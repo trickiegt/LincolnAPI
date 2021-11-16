@@ -94,7 +94,7 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "",
-        "func": "//lets setup in NodeRed\n\nvar sessionID = \"--YOUR_SESSIONID_HERE--\";\nvar data = {\n    \"PARAMS\":{\n        \"apiLevel\":\"3\",\n        \"forceUpdate\":\"1\",\n        \"lastUpdatedTime\":\"0\",\n        \"sessionId\": sessionID\n        }\n    };\n//{\"PARAMS\":{\"apiLevel\":\"3\",\"forceUpdate\":\"0\",\"lastUpdatedTime\":\"0\",\"sessionId\":\"--YOUR_SESSIONID_HERE--\"}}\nvar jsonstr = JSON.stringify(data);\nvar url = \"https://phev.myfordmobile.com/services/webGetAVD\";\n\n\n\nmsg.payload = jsonstr;\nmsg.headers = {};\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\nmsg.url = url;\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Request Sent at at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "//lets setup in NodeRed\n\nvar sessionID = \"REDACTED-ButRequired\";\nvar data = {\n    \"PARAMS\":{\n        \"apiLevel\":\"3\",\n        \"forceUpdate\":\"1\",\n        \"lastUpdatedTime\":\"0\",\n        \"sessionId\": sessionID\n        }\n    };\n//{\"PARAMS\":{\"apiLevel\":\"3\",\"forceUpdate\":\"0\",\"lastUpdatedTime\":\"0\",\"sessionId\":\"REDACTED-ButRequired\"}}\nvar jsonstr = JSON.stringify(data);\nvar url = \"https://phev.myfordmobile.com/services/webGetAVD\";\n\n\n\nmsg.payload = jsonstr;\nmsg.headers = {};\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\nmsg.url = url;\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Request Sent at at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -112,7 +112,7 @@
         "id": "f2da764eb55c79b7",
         "type": "inject",
         "z": "0dc4f3cdcca4aa50",
-        "name": "every4 hours",
+        "name": "every2 hours",
         "props": [
             {
                 "p": "payload"
@@ -122,7 +122,7 @@
                 "vt": "str"
             }
         ],
-        "repeat": "14400",
+        "repeat": "7200",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
@@ -172,7 +172,7 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "Door Lock",
-        "func": "//lets setup in NodeRed\nvar vin = \"--YOUR_VIN_HERE--\";\nvar sessionID = \"--YOUR_SESSIONID_HERE--\";\nvar data = {\n    \"PARAMS\":{\n        \"apiLevel\":\"3\",\n        \"LOOKUPCODE\":\"LOCK_CMD\",\n        \"VIN\": vin,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\n\nmsg.payload = jsonstr;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Lock Command Called at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "//lets setup in NodeRed\nvar vin = \"REDACTED-ButRequired\";\nvar sessionID = \"REDACTED-ButRequired\";\nvar data = {\n    \"PARAMS\":{\n        \"apiLevel\":\"3\",\n        \"LOOKUPCODE\":\"LOCK_CMD\",\n        \"VIN\": vin,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\n\nmsg.payload = jsonstr;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Lock Command Called at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -220,7 +220,7 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "Check Status",
-        "func": "//lets setup in NodeRed\nvar sessionID = \"--YOUR_SESSIONID_HERE--\";\nvar commandID = msg.req.commandID\nvar data = {\n    \"PARAMS\":{\n        \"COMMANDID\": commandID,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\nmsg.payload = data;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Status Requested at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "//lets setup in NodeRed\nvar sessionID = \"REDACTED-ButRequired\";\nvar commandID = msg.req.commandID\nvar data = {\n    \"PARAMS\":{\n        \"COMMANDID\": commandID,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\nmsg.payload = data;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Status Requested at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -409,7 +409,7 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "Door unLock",
-        "func": "//lets setup in NodeRed\nvar vin = \"--YOUR_VIN_HERE--\";\nvar sessionID = \"--YOUR_SESSIONID_HERE--\";\n\nvar data = {\n    \"PARAMS\":{\n        \"apiLevel\":\"3\",\n        \"LOOKUPCODE\":\"UNLOCK_CMD\",\n        \"VIN\": vin,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\n\nmsg.payload = jsonstr;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `unLock Command Called at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "//lets setup in NodeRed\nvar vin = \"REDACTED-ButRequired\";\nvar sessionID = \"REDACTED-ButRequired\";\n\nvar data = {\n    \"PARAMS\":{\n        \"apiLevel\":\"3\",\n        \"LOOKUPCODE\":\"UNLOCK_CMD\",\n        \"VIN\": vin,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\n\nmsg.payload = jsonstr;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `unLock Command Called at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -457,7 +457,7 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "Check Status",
-        "func": "//lets setup in NodeRed\nvar sessionID = \"--YOUR_SESSIONID_HERE--\";\nvar commandID = msg.req.commandID\nvar data = {\n    \"PARAMS\":{\n        \"COMMANDID\": commandID,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\nmsg.payload = data;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Door Lock Requested at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "//lets setup in NodeRed\nvar sessionID = \"REDACTED-ButRequired\";\nvar commandID = msg.req.commandID\nvar data = {\n    \"PARAMS\":{\n        \"COMMANDID\": commandID,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\nmsg.payload = data;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Status Requested at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -664,7 +664,7 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "Remote Start",
-        "func": "//lets setup in NodeRed\nvar vin = \"--YOUR_VIN_HERE--\";\nvar sessionID = \"--YOUR_SESSIONID_HERE--\";\n\nvar data = {\n    \"PARAMS\":{\n        \"apiLevel\":\"3\",\n        \"LOOKUPCODE\":\"START_CMD\",\n        \"VIN\": vin,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\n\nmsg.payload = jsonstr;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Start Command Called at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "//lets setup in NodeRed\nvar vin = \"REDACTED-ButRequired\";\nvar sessionID = \"REDACTED-ButRequired\";\n\nvar data = {\n    \"PARAMS\":{\n        \"apiLevel\":\"3\",\n        \"LOOKUPCODE\":\"START_CMD\",\n        \"VIN\": vin,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\n\nmsg.payload = jsonstr;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Start Command Called at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -704,7 +704,7 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "Check Status",
-        "func": "//lets setup in NodeRed\nvar sessionID = \"--YOUR_SESSIONID_HERE--\";\nvar commandID = msg.req.commandID\nvar data = {\n    \"PARAMS\":{\n        \"COMMANDID\": commandID,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\nmsg.payload = data;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Door Lock Requested at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "//lets setup in NodeRed\nvar sessionID = \"REDACTED-ButRequired\";\nvar commandID = msg.req.commandID\nvar data = {\n    \"PARAMS\":{\n        \"COMMANDID\": commandID,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\nmsg.payload = data;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Status Requested at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -900,7 +900,7 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "Remote Start",
-        "func": "//lets setup in NodeRed\nvar vin = \"--YOUR_VIN_HERE--\";\nvar sessionID = \"--YOUR_SESSIONID_HERE--\";\n\nvar data = {\n    \"PARAMS\":{\n        \"apiLevel\":\"3\",\n        \"LOOKUPCODE\":\"START_CMD\",\n        \"VIN\": vin,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\n\nmsg.payload = jsonstr;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Start Command Called at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "//lets setup in NodeRed\nvar vin = \"REDACTED-ButRequired\";\nvar sessionID = \"REDACTED-ButRequired\";\n\nvar data = {\n    \"PARAMS\":{\n        \"apiLevel\":\"3\",\n        \"LOOKUPCODE\":\"START_CMD\",\n        \"VIN\": vin,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\n\nmsg.payload = jsonstr;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Start Command Called at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -940,7 +940,7 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "Check Status",
-        "func": "//lets setup in NodeRed\nvar sessionID = \"--YOUR_SESSIONID_HERE--\";\nvar commandID = msg.req.commandID\nvar data = {\n    \"PARAMS\":{\n        \"COMMANDID\": commandID,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\nmsg.payload = data;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Door Lock Requested at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "//lets setup in NodeRed\nvar sessionID = \"REDACTED-ButRequired\";\nvar commandID = msg.req.commandID\nvar data = {\n    \"PARAMS\":{\n        \"COMMANDID\": commandID,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\nmsg.payload = data;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Status Requested at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1282,7 +1282,8 @@
         "y": 1300,
         "wires": [
             [
-                "577629958b84c524"
+                "577629958b84c524",
+                "02f28ff9c5fdab24"
             ],
             [
                 "bf44c9f82d8f395f"
@@ -1320,7 +1321,7 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "Refresh Token",
-        "func": "//lets setup in NodeRed\n\nvar sessionID = \"--YOUR_SESSIONID_HERE--\";\nvar data = {\n    \"refresh_token\":\"eyJ0eXAiOiJKV1QiLCJ0b2tlbl90eXBlIjoiUiIsImFsZyI6IlJTMjU2Iiwia2lkIjoiY3NkbmtleTEifQ.eyJzdWIiOiJiZWEwNDNjMS01MzNlLTRkMGYtYmVmYi04ZGE5Njg3OTBkMTkiLCJhdWQiOiI0NTEzM2I4OC0wNjcxLTRhYWYtYjhkMS05OWU2ODRlZDRlNDUiLCJkZXZpY2VfaWQiOiI1MzBkNDMxYmE2ODI0MGViIiwiaXNzIjoiRDc2ODAxRkEtNTIwNS00N0U3LUFCNkEtRDBGNTQwOEFCMUZBIiwidHlwZSI6InNzbyIsImV4cCI6MTY2Nzk2MDI2NCwiaWF0IjoxNjM2NDI0MjY0LCJqdGkiOiJiZWEwNDNjMS01MzNlLTRkMGYtYmVmYi04ZGE5Njg3OTBkMTl8MTYzNjQyNDI2NDEwNSIsInVzZXJuYW1lIjoidHJpY2tpZWd0QGdtYWlsLmNvbSJ9.VKt0I6gZCwC_urbyt82jLfoxbp8KHtPrrivw2j02Isx1KcMrURC1SOrB9qMz3aLR-FYutcxKmC-38rCeO0i3XGWDYQpCE5liaBo-7YNe7Enm925WG1IMPmy8dWrLz6g6qdBgb7sJfVzIhpU5oCMsdJV7HJljGUYxgiVAs5elPPHIR5A0OKOvEsLpyiBkv3_6hyF-uONzIip57z5lCEVtL-v098VwQsJYuwC77EsvLTUsa_AdBoNyAaI-w-1WD19OXtbTFHSvmMVJxZMFNYFQ6gyunQU-CX37plXwck9_nZM0SX3BdsrROKzk19Zr2KmvvrI_cUW2iY4wHxu2QZAjCg\"\n    };\nvar jsonstr = JSON.stringify(data);\n\nvar url = \"https://api.mps.ford.com/api/oauth2/v1/refresh\";\n\n\n\nmsg.payload = data;\nmsg.headers = {};\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\n//msg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\nmsg.headers['application-id'] = '45133B88-0671-4AAF-B8D1-99E684ED4E45';\nmsg.url = url;\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Requested Token Refresh at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "//lets setup in NodeRed\n\nvar sessionID = \"REDACTED-ButRequired\";\nvar data = {\n    \"refresh_token\":\"REDACTED-ButRequired\"\n    };\nvar jsonstr = JSON.stringify(data);\n\nvar url = \"https://api.mps.ford.com/api/oauth2/v1/refresh\";\n\n\n\nmsg.payload = data;\nmsg.headers = {};\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\n//msg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\nmsg.headers['application-id'] = '45133B88-0671-4AAF-B8D1-99E684ED4E45';\nmsg.url = url;\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Requested Token Refresh at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1429,7 +1430,7 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "Update Flow Variables",
-        "func": "flow.set([\"latitude\"], parseFloat(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.vehicleLatitude));\nflow.set([\"longitude\"], parseFloat(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.vehicleLongitude));\nflow.set([\"remoteStartStatus\"], msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.remoteStartStatus);\nflow.set([\"remoteStartDuration\"], parseInt(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.remoteStartDuration));\nflow.set([\"battery\"], msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.batteryHealth);\nflow.set([\"odometer\"], parseInt(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.odometer));\nflow.set([\"fuelLevel\"], parseInt(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.fuelLevel));\nflow.set([\"tirePressure\"], msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.tirePressure);\n\n//Sometimes Lincoln reports oil life at 0 when it isnt\n//Check previous result and keep old result if current =0\nvar oilLife = parseInt(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.oilLife);\nvar prevOilLife = flow.get([\"oilLife\"]);\nif ((oilLife == 0) && (prevOilLife >4)){}\nelse\n    flow.set([\"oilLife\"], oilLife);\n\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Current Fuel Level ${flow.get([\"fuelLevel\"])} at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "flow.set([\"latitude\"], parseFloat(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.vehicleLatitude));\nflow.set([\"longitude\"], parseFloat(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.vehicleLongitude));\nflow.set([\"remoteStartStatus\"], msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.remoteStartStatus);\nflow.set([\"remoteStartDuration\"], parseInt(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.remoteStartDuration));\nflow.set([\"battery\"], msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.batteryHealth);\nflow.set([\"odometer\"], parseInt(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.odometer));\nflow.set([\"fuelLevel\"], parseInt(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.fuelLevel));\nflow.set([\"tirePressure\"], msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.tirePressure);\n\n//Sometimes Lincoln reports oil life at 0 when it isnt\n//Check previous result and keep old result if current =0\nvar oilLife = parseInt(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.oilLife);\nvar prevOilLife = flow.get([\"oilLife\"]);\nif ((oilLife == 0) && (prevOilLife >4)){}\nelse\n    flow.set([\"oilLife\"], oilLife);\n\n\n\n////////////////////////\n//////////////////////\n///Check Distance//////\n//////////////////////\nfunction distance(lat1, lon1, lat2, lon2, unit) {\n    var radlat1 = Math.PI * lat1/180\n    var radlat2 = Math.PI * lat2/180\n    var radlon1 = Math.PI * lon1/180\n    var radlon2 = Math.PI * lon2/180\n    var theta = lon1-lon2\n    var radtheta = Math.PI * theta/180\n    var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);\n    dist = Math.acos(dist)\n    dist = dist * 180/Math.PI\n    dist = dist * 60 * 1.1515\n    if (unit==\"K\") { dist = dist * 1.609344 }\n    if (unit==\"N\") { dist = dist * 0.8684 }\n    return dist\n}\n//37.47194360493601, -77.43292258576192 --PMUSA\n//flow val 37.4715, -77.436\n//var test = distance(37.47194360493601, -77.43292258576192, Math.floor(flow.get([\"latitude\"])), Math.floor(flow.get([\"longitude\"])));\nvar carLat =  parseFloat(flow.get([\"latitude\"]));\nvar carLon =  parseFloat(flow.get([\"longitude\"]));\nvar test = distance(37.47194360493601, -77.43292258576192,  carLat, carLon);\n//round to 3 decimal places\nif (test < 1.2)\n    flow.set([\"atWork\"], true);\nelse\n    flow.set([\"atWork\"], false);\n\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Current Fuel Level ${flow.get([\"fuelLevel\"])} at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1707,7 +1708,9 @@
         "x": 970,
         "y": 1320,
         "wires": [
-            []
+            [
+                "02f28ff9c5fdab24"
+            ]
         ]
     },
     {
@@ -1730,7 +1733,9 @@
         "x": 670,
         "y": 880,
         "wires": [
-            []
+            [
+                "0f520d2deb246314"
+            ]
         ]
     },
     {
@@ -1753,7 +1758,9 @@
         "x": 710,
         "y": 440,
         "wires": [
-            []
+            [
+                "cd389ac842647e23"
+            ]
         ]
     },
     {
@@ -1788,7 +1795,11 @@
             "30ae179111a32de6",
             "61308bc5c1013b97",
             "e0ed304ecaa644a0",
-            "a07fedb0999c1a42"
+            "a07fedb0999c1a42",
+            "d880099869696a7e",
+            "d8ed75f35cccaead",
+            "d84bbdbdb91b49c4",
+            "c2a50da9b2cdc12d"
         ],
         "x": 75,
         "y": 120,
@@ -1831,7 +1842,9 @@
         "x": 770,
         "y": 700,
         "wires": [
-            []
+            [
+                "cfe3d1e6147a1a19"
+            ]
         ]
     },
     {
@@ -1854,7 +1867,9 @@
         "x": 750,
         "y": 1140,
         "wires": [
-            []
+            [
+                "139d975732fe2569"
+            ]
         ]
     },
     {
@@ -1877,7 +1892,9 @@
         "x": 890,
         "y": 1580,
         "wires": [
-            []
+            [
+                "e6e97c6dcf3c8fca"
+            ]
         ]
     },
     {
@@ -1985,7 +2002,9 @@
         "x": 1280,
         "y": 120,
         "wires": [
-            []
+            [
+                "033e569d744644cc"
+            ]
         ]
     },
     {
@@ -2020,8 +2039,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1490,
-        "y": 200,
+        "x": 1530,
+        "y": 260,
         "wires": []
     },
     {
@@ -2040,12 +2059,11 @@
         ],
         "repeat": "",
         "crontab": "",
-        "once": false,
+        "once": true,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "",
         "payloadType": "date",
-        "x": 1120,
+        "x": 1130,
         "y": 260,
         "wires": [
             [
@@ -2068,7 +2086,8 @@
         "y": 260,
         "wires": [
             [
-                "8a107f22cb4d47d7"
+                "8a107f22cb4d47d7",
+                "033e569d744644cc"
             ]
         ]
     },
@@ -2140,6 +2159,951 @@
         "x": 1160,
         "y": 200,
         "wires": []
+    },
+    {
+        "id": "b824fee361f85be5",
+        "type": "ha-entity",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "mkx.fuelLevel",
+        "server": "da3b2d1e.ad751",
+        "version": 1,
+        "debugenabled": false,
+        "outputs": 1,
+        "entityType": "sensor",
+        "config": [
+            {
+                "property": "name",
+                "value": "MKX Fuel Level"
+            },
+            {
+                "property": "device_class",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": ""
+            }
+        ],
+        "state": "fuelLevel",
+        "stateType": "flow",
+        "attributes": [
+            {
+                "property": "entity_id",
+                "value": "sensor.mkx.fuelLevel",
+                "valueType": "str"
+            }
+        ],
+        "resend": true,
+        "outputLocation": "payload",
+        "outputLocationType": "none",
+        "inputOverride": "allow",
+        "outputOnStateChange": false,
+        "outputPayload": "$entity().state ? \"on\": \"off\"",
+        "outputPayloadType": "jsonata",
+        "x": 2020,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "967eb28168e434ef",
+        "type": "ha-entity",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "mkx.battery",
+        "server": "da3b2d1e.ad751",
+        "version": 1,
+        "debugenabled": false,
+        "outputs": 1,
+        "entityType": "sensor",
+        "config": [
+            {
+                "property": "name",
+                "value": "MKX Battery Status"
+            },
+            {
+                "property": "device_class",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": ""
+            }
+        ],
+        "state": "battery",
+        "stateType": "flow",
+        "attributes": [
+            {
+                "property": "entity_id",
+                "value": "sensor.mkx.battery",
+                "valueType": "str"
+            }
+        ],
+        "resend": true,
+        "outputLocation": "payload",
+        "outputLocationType": "none",
+        "inputOverride": "allow",
+        "outputOnStateChange": false,
+        "outputPayload": "$entity().state ? \"on\": \"off\"",
+        "outputPayloadType": "jsonata",
+        "x": 2010,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "789d3e6209089de5",
+        "type": "ha-entity",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "mkx.odometer",
+        "server": "da3b2d1e.ad751",
+        "version": 1,
+        "debugenabled": false,
+        "outputs": 1,
+        "entityType": "sensor",
+        "config": [
+            {
+                "property": "name",
+                "value": "MKX Odometer"
+            },
+            {
+                "property": "device_class",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": ""
+            }
+        ],
+        "state": "odometer",
+        "stateType": "flow",
+        "attributes": [
+            {
+                "property": "entity_id",
+                "value": "sensor.mkx.odometer",
+                "valueType": "str"
+            }
+        ],
+        "resend": true,
+        "outputLocation": "payload",
+        "outputLocationType": "none",
+        "inputOverride": "allow",
+        "outputOnStateChange": false,
+        "outputPayload": "$entity().state ? \"on\": \"off\"",
+        "outputPayloadType": "jsonata",
+        "x": 2020,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8514e31af9086d3f",
+        "type": "ha-entity",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "mkx.oilLife",
+        "server": "da3b2d1e.ad751",
+        "version": 1,
+        "debugenabled": false,
+        "outputs": 1,
+        "entityType": "sensor",
+        "config": [
+            {
+                "property": "name",
+                "value": "MKX Oil Life"
+            },
+            {
+                "property": "device_class",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": ""
+            }
+        ],
+        "state": "oilLife",
+        "stateType": "flow",
+        "attributes": [
+            {
+                "property": "entity_id",
+                "value": "sensor.mkx.oilLife",
+                "valueType": "str"
+            }
+        ],
+        "resend": true,
+        "outputLocation": "payload",
+        "outputLocationType": "none",
+        "inputOverride": "allow",
+        "outputOnStateChange": false,
+        "outputPayload": "$entity().state ? \"on\": \"off\"",
+        "outputPayloadType": "jsonata",
+        "x": 2010,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d2464ea3535804e9",
+        "type": "ha-entity",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "mkx.tirePressure",
+        "server": "da3b2d1e.ad751",
+        "version": 1,
+        "debugenabled": false,
+        "outputs": 1,
+        "entityType": "sensor",
+        "config": [
+            {
+                "property": "name",
+                "value": "MKX Tire Pressure"
+            },
+            {
+                "property": "device_class",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": ""
+            }
+        ],
+        "state": "tirePressure",
+        "stateType": "flow",
+        "attributes": [
+            {
+                "property": "entity_id",
+                "value": "sensor.mkx.tirePressure",
+                "valueType": "str"
+            }
+        ],
+        "resend": true,
+        "outputLocation": "payload",
+        "outputLocationType": "none",
+        "inputOverride": "allow",
+        "outputOnStateChange": false,
+        "outputPayload": "$entity().state ? \"on\": \"off\"",
+        "outputPayloadType": "jsonata",
+        "x": 2030,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c1b1e76b2452fc6e",
+        "type": "ha-entity",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "mkx.location",
+        "server": "da3b2d1e.ad751",
+        "version": 1,
+        "debugenabled": false,
+        "outputs": 1,
+        "entityType": "sensor",
+        "config": [
+            {
+                "property": "name",
+                "value": "MKX"
+            },
+            {
+                "property": "device_class",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": ""
+            }
+        ],
+        "state": "atWork",
+        "stateType": "flow",
+        "attributes": [
+            {
+                "property": "entity_id",
+                "value": "sensor.mkx.location",
+                "valueType": "str"
+            },
+            {
+                "property": "source_type",
+                "value": "gps",
+                "valueType": "str"
+            },
+            {
+                "property": "latitude",
+                "value": "latitude",
+                "valueType": "flow"
+            },
+            {
+                "property": "longitude",
+                "value": "longitude",
+                "valueType": "flow"
+            },
+            {
+                "property": "gps_accuracy",
+                "value": "20",
+                "valueType": "num"
+            }
+        ],
+        "resend": true,
+        "outputLocation": "payload",
+        "outputLocationType": "none",
+        "inputOverride": "allow",
+        "outputOnStateChange": false,
+        "outputPayload": "$entity().state ? \"on\": \"off\"",
+        "outputPayloadType": "jsonata",
+        "x": 2010,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "017b5bdf64a32288",
+        "type": "link in",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "",
+        "links": [
+            "033e569d744644cc"
+        ],
+        "x": 1835,
+        "y": 200,
+        "wires": [
+            [
+                "b824fee361f85be5",
+                "967eb28168e434ef",
+                "789d3e6209089de5",
+                "8514e31af9086d3f",
+                "d2464ea3535804e9",
+                "c1b1e76b2452fc6e"
+            ]
+        ]
+    },
+    {
+        "id": "033e569d744644cc",
+        "type": "link out",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "017b5bdf64a32288"
+        ],
+        "x": 1525,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "01905e2efdd73cfd",
+        "type": "comment",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "Copy Values to HA Sensors",
+        "info": "",
+        "x": 1860,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "f3836fde25d90ac7",
+        "type": "server-state-changed",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "HA Request Lock",
+        "server": "da3b2d1e.ad751",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.mkx_lock",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 120,
+        "y": 620,
+        "wires": [
+            [
+                "aac5d862e31f9f45"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "cd389ac842647e23",
+        "type": "api-call-service",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "toggle bool off",
+        "server": "da3b2d1e.ad751",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.mkx_lock",
+        "data": "",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 900,
+        "y": 440,
+        "wires": [
+            [
+                "c2a50da9b2cdc12d"
+            ]
+        ]
+    },
+    {
+        "id": "02dfa84f03ccf217",
+        "type": "server-state-changed",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "HA Request Unlock",
+        "server": "da3b2d1e.ad751",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.mkx_unlock",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 130,
+        "y": 1060,
+        "wires": [
+            [
+                "9ef5e17b0b39aff3"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "139d975732fe2569",
+        "type": "api-call-service",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "toggle bool off",
+        "server": "da3b2d1e.ad751",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.mkx_unlock",
+        "data": "",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 960,
+        "y": 1140,
+        "wires": [
+            [
+                "d84bbdbdb91b49c4"
+            ]
+        ]
+    },
+    {
+        "id": "0f520d2deb246314",
+        "type": "api-call-service",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "toggle bool off",
+        "server": "da3b2d1e.ad751",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.mkx_unlock",
+        "data": "",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 860,
+        "y": 880,
+        "wires": [
+            [
+                "d84bbdbdb91b49c4"
+            ]
+        ]
+    },
+    {
+        "id": "cfe3d1e6147a1a19",
+        "type": "api-call-service",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "toggle bool off",
+        "server": "da3b2d1e.ad751",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.mkx_lock",
+        "data": "",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 980,
+        "y": 700,
+        "wires": [
+            [
+                "c2a50da9b2cdc12d"
+            ]
+        ]
+    },
+    {
+        "id": "16703433f254d5b3",
+        "type": "server-state-changed",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "HA Request Start",
+        "server": "da3b2d1e.ad751",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.mkx_start",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 120,
+        "y": 1500,
+        "wires": [
+            [
+                "b7beaa2adf1a5851"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "02f28ff9c5fdab24",
+        "type": "api-call-service",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "toggle bool off",
+        "server": "da3b2d1e.ad751",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.mkx_start",
+        "data": "",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1160,
+        "y": 1280,
+        "wires": [
+            [
+                "d8ed75f35cccaead"
+            ]
+        ]
+    },
+    {
+        "id": "e6e97c6dcf3c8fca",
+        "type": "api-call-service",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "toggle bool off",
+        "server": "da3b2d1e.ad751",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.mkx_start",
+        "data": "",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1100,
+        "y": 1580,
+        "wires": [
+            [
+                "d8ed75f35cccaead"
+            ]
+        ]
+    },
+    {
+        "id": "9a2e93c252d98476",
+        "type": "ha-entity",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "mkx.remoteDuration",
+        "server": "da3b2d1e.ad751",
+        "version": 1,
+        "debugenabled": false,
+        "outputs": 1,
+        "entityType": "sensor",
+        "config": [
+            {
+                "property": "name",
+                "value": "MKX Remote Duration"
+            },
+            {
+                "property": "device_class",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": ""
+            }
+        ],
+        "state": "remoteStartTimeLeft",
+        "stateType": "flow",
+        "attributes": [
+            {
+                "property": "entity_id",
+                "value": "sensor.mkx.remote_duration",
+                "valueType": "str"
+            }
+        ],
+        "resend": true,
+        "outputLocation": "payload",
+        "outputLocationType": "none",
+        "inputOverride": "allow",
+        "outputOnStateChange": false,
+        "outputPayload": "$entity().state ? \"on\": \"off\"",
+        "outputPayloadType": "jsonata",
+        "x": 1980,
+        "y": 500,
+        "wires": [
+            [
+                "d6584529632e5526"
+            ]
+        ]
+    },
+    {
+        "id": "d6584529632e5526",
+        "type": "switch",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "Monitor Duration",
+        "property": "remoteStartTimeLeft",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "29",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 2230,
+        "y": 500,
+        "wires": [
+            [
+                "87035058a0e4202c"
+            ]
+        ]
+    },
+    {
+        "id": "87035058a0e4202c",
+        "type": "delay",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "30",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 2440,
+        "y": 500,
+        "wires": [
+            [
+                "941feb247ba78f3c"
+            ]
+        ]
+    },
+    {
+        "id": "d8ed75f35cccaead",
+        "type": "link out",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "2deef0df32fb9597"
+        ],
+        "x": 1315,
+        "y": 1420,
+        "wires": []
+    },
+    {
+        "id": "d84bbdbdb91b49c4",
+        "type": "link out",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "2deef0df32fb9597"
+        ],
+        "x": 1115,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "c2a50da9b2cdc12d",
+        "type": "link out",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "2deef0df32fb9597"
+        ],
+        "x": 1155,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "be639786267e2475",
+        "type": "server-state-changed",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "Check for start and make timer",
+        "server": "da3b2d1e.ad751",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.mkx_remote_duration",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "10",
+        "halt_if_type": "num",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "remoteStartTimeLeft",
+                "propertyType": "flow",
+                "value": "10",
+                "valueType": "num"
+            }
+        ],
+        "x": 1630,
+        "y": 540,
+        "wires": [
+            [
+                "33fd94f714bafda7"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "941feb247ba78f3c",
+        "type": "function",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "reduce time by 30sec",
+        "func": "flow.set([\"remoteStartTimeLeft\"], flow.get([\"remoteStartTimeLeft\"])-.5);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2180,
+        "y": 620,
+        "wires": [
+            [
+                "9a2e93c252d98476"
+            ]
+        ]
+    },
+    {
+        "id": "33fd94f714bafda7",
+        "type": "change",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "remoteStartTimeLeft",
+                "pt": "flow",
+                "to": "600",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1790,
+        "y": 600,
+        "wires": [
+            [
+                "9a2e93c252d98476"
+            ]
+        ]
     },
     {
         "id": "da3b2d1e.ad751",
