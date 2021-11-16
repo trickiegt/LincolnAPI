@@ -1,0 +1,63 @@
+type: grid
+cards:
+  - type: entities
+    entities:
+      - entity: sensor.mkx_battery_status
+      - entity: sensor.mkx_tire_pressure
+      - entity: sensor.mkx_odometer
+    title: Lincoln MKX
+  - type: horizontal-stack
+    cards:
+      - type: button
+        state_color: true
+        tap_action:
+          action: more-info
+        entity: input_boolean.mkx_lock
+        name: Lock Doors
+        hold_action:
+          action: toggle
+      - type: button
+        state_color: true
+        tap_action:
+          action: more-info
+        entity: input_boolean.mkx_unlock
+        name: Unlock Doors
+        hold_action:
+          action: toggle
+      - type: button
+        state_color: true
+        tap_action:
+          action: more-info
+        entity: input_boolean.mkx_start
+        name: Start MKX
+        hold_action:
+          action: toggle
+  - type: horizontal-stack
+    cards:
+      - type: gauge
+        entity: sensor.mkx_fuel_level
+        max: 100
+        severity:
+          green: 80
+          yellow: 40
+          red: 10
+        min: 0
+      - type: gauge
+        entity: sensor.mkx_oil_life
+        min: 0
+        max: 100
+        severity:
+          green: 80
+          yellow: 40
+          red: 0
+  - type: gauge
+    entity: sensor.mkx_remote_duration
+    min: 0
+    max: 600
+    name: Remote Start Time Left
+    severity:
+      green: 600
+      yellow: 300
+      red: 0
+columns: 1
+square: false
