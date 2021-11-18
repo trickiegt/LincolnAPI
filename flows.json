@@ -81,7 +81,7 @@
         "persist": false,
         "proxy": "",
         "authType": "",
-        "x": 370,
+        "x": 330,
         "y": 40,
         "wires": [
             [
@@ -94,7 +94,7 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "",
-        "func": "//lets setup in NodeRed\n\nvar sessionID = \"REDACTED-ButRequired\";\nvar data = {\n    \"PARAMS\":{\n        \"apiLevel\":\"3\",\n        \"forceUpdate\":\"1\",\n        \"lastUpdatedTime\":\"0\",\n        \"sessionId\": sessionID\n        }\n    };\n//{\"PARAMS\":{\"apiLevel\":\"3\",\"forceUpdate\":\"0\",\"lastUpdatedTime\":\"0\",\"sessionId\":\"REDACTED-ButRequired\"}}\nvar jsonstr = JSON.stringify(data);\nvar url = \"https://phev.myfordmobile.com/services/webGetAVD\";\n\n\n\nmsg.payload = jsonstr;\nmsg.headers = {};\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\nmsg.url = url;\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Request Sent at at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "//lets setup in NodeRed\n\nvar sessionID = \"--YOUR_SESSIONid--\";\nvar data = {\n    \"PARAMS\":{\n        \"apiLevel\":\"3\",\n        \"forceUpdate\":\"1\",\n        \"lastUpdatedTime\":\"0\",\n        \"sessionId\": sessionID\n        }\n    };\n//{\"PARAMS\":{\"apiLevel\":\"3\",\"forceUpdate\":\"0\",\"lastUpdatedTime\":\"0\",\"sessionId\":\"--YOUR_SESSIONid--\"}}\nvar jsonstr = JSON.stringify(data);\nvar url = \"https://phev.myfordmobile.com/services/webGetAVD\";\n\n\n\nmsg.payload = jsonstr;\nmsg.headers = {};\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\nmsg.url = url;\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Request Sent at at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -112,23 +112,19 @@
         "id": "f2da764eb55c79b7",
         "type": "inject",
         "z": "0dc4f3cdcca4aa50",
-        "name": "every2 hours",
+        "name": "every hour",
         "props": [
             {
                 "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
             }
         ],
-        "repeat": "7200",
+        "repeat": "3600",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
         "payloadType": "date",
-        "x": 120,
+        "x": 110,
         "y": 80,
         "wires": [
             [
@@ -142,7 +138,7 @@
         "z": "0dc4f3cdcca4aa50",
         "name": "Request Details for MKX",
         "info": "",
-        "x": 130,
+        "x": 100,
         "y": 40,
         "wires": []
     },
@@ -159,8 +155,8 @@
         "persist": true,
         "proxy": "",
         "authType": "",
-        "x": 400,
-        "y": 560,
+        "x": 340,
+        "y": 440,
         "wires": [
             [
                 "200b44b12a839c3d"
@@ -172,14 +168,14 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "Door Lock",
-        "func": "//lets setup in NodeRed\nvar vin = \"REDACTED-ButRequired\";\nvar sessionID = \"REDACTED-ButRequired\";\nvar data = {\n    \"PARAMS\":{\n        \"apiLevel\":\"3\",\n        \"LOOKUPCODE\":\"LOCK_CMD\",\n        \"VIN\": vin,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\n\nmsg.payload = jsonstr;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Lock Command Called at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "//lets setup in NodeRed\nvar vin = \"--YOUR_VIN_HERE--\";\nvar sessionID = \"--YOUR_SESSIONid--\";\nvar data = {\n    \"PARAMS\":{\n        \"apiLevel\":\"3\",\n        \"LOOKUPCODE\":\"LOCK_CMD\",\n        \"VIN\": vin,\n        \"SESSIONID\": sessionID\n        },\n    \"Entries\":{\n        \"Entry\":{\n            \"status\":\"Failed\"\n            }\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\n\nmsg.payload = jsonstr;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Lock Command Called at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 220,
-        "y": 560,
+        "x": 250,
+        "y": 500,
         "wires": [
             [
                 "6df04771ca8d975a"
@@ -207,8 +203,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 200,
-        "y": 500,
+        "x": 100,
+        "y": 480,
         "wires": [
             [
                 "aac5d862e31f9f45"
@@ -220,14 +216,14 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "Check Status",
-        "func": "//lets setup in NodeRed\nvar sessionID = \"REDACTED-ButRequired\";\nvar commandID = msg.req.commandID\nvar data = {\n    \"PARAMS\":{\n        \"COMMANDID\": commandID,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\nmsg.payload = data;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Status Requested at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "//lets setup in NodeRed\nvar sessionID = \"--YOUR_SESSIONid--\";\nvar commandID = msg.req.commandID\nvar data = {\n    \"PARAMS\":{\n        \"COMMANDID\": commandID,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\nmsg.payload = data;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Status Requested at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 540,
-        "y": 620,
+        "x": 290,
+        "y": 560,
         "wires": [
             [
                 "9b888a618fde1a48"
@@ -247,11 +243,12 @@
         "persist": true,
         "proxy": "",
         "authType": "",
-        "x": 370,
-        "y": 760,
+        "x": 350,
+        "y": 680,
         "wires": [
             [
-                "1df61894b4c2f85a"
+                "1df61894b4c2f85a",
+                "8abac21ac6d959c3"
             ]
         ]
     },
@@ -272,8 +269,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 360,
-        "y": 700,
+        "x": 340,
+        "y": 620,
         "wires": [
             [
                 "b5e90e062b35f832"
@@ -305,8 +302,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 3,
-        "x": 550,
-        "y": 700,
+        "x": 530,
+        "y": 660,
         "wires": [
             [
                 "af207f2a7fcf70bb"
@@ -338,8 +335,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 770,
-        "y": 620,
+        "x": 570,
+        "y": 600,
         "wires": [
             [
                 "0b9d64ddfede87ac"
@@ -365,8 +362,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 730,
-        "y": 560,
+        "x": 690,
+        "y": 500,
         "wires": [
             [
                 "0b9d64ddfede87ac"
@@ -379,8 +376,8 @@
         "z": "0dc4f3cdcca4aa50",
         "name": "Request LOCK for MKX",
         "info": "",
-        "x": 130,
-        "y": 460,
+        "x": 100,
+        "y": 440,
         "wires": []
     },
     {
@@ -396,8 +393,8 @@
         "persist": true,
         "proxy": "",
         "authType": "",
-        "x": 420,
-        "y": 1000,
+        "x": 360,
+        "y": 840,
         "wires": [
             [
                 "380112be353aee14"
@@ -409,14 +406,14 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "Door unLock",
-        "func": "//lets setup in NodeRed\nvar vin = \"REDACTED-ButRequired\";\nvar sessionID = \"REDACTED-ButRequired\";\n\nvar data = {\n    \"PARAMS\":{\n        \"apiLevel\":\"3\",\n        \"LOOKUPCODE\":\"UNLOCK_CMD\",\n        \"VIN\": vin,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\n\nmsg.payload = jsonstr;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `unLock Command Called at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "//lets setup in NodeRed\nvar vin = \"--YOUR_VIN_HERE--\";\nvar sessionID = \"--YOUR_SESSIONid--\";\n\nvar data = {\n    \"PARAMS\":{\n        \"apiLevel\":\"3\",\n        \"LOOKUPCODE\":\"UNLOCK_CMD\",\n        \"VIN\": vin,\n        \"SESSIONID\": sessionID\n        },\n    \"Entries\":{\n        \"Entry\":{\n            \"status\":\"Failed\"\n            }\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\n\nmsg.payload = jsonstr;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `unLock Command Called at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 230,
-        "y": 1000,
+        "x": 270,
+        "y": 880,
         "wires": [
             [
                 "a347981794fa8e99"
@@ -444,8 +441,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 220,
-        "y": 940,
+        "x": 120,
+        "y": 860,
         "wires": [
             [
                 "9ef5e17b0b39aff3"
@@ -457,14 +454,14 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "Check Status",
-        "func": "//lets setup in NodeRed\nvar sessionID = \"REDACTED-ButRequired\";\nvar commandID = msg.req.commandID\nvar data = {\n    \"PARAMS\":{\n        \"COMMANDID\": commandID,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\nmsg.payload = data;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Status Requested at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "//lets setup in NodeRed\nvar sessionID = \"--YOUR_SESSIONid--\";\nvar commandID = msg.req.commandID\nvar data = {\n    \"PARAMS\":{\n        \"COMMANDID\": commandID,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\nmsg.payload = data;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Status Requested at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 560,
-        "y": 1060,
+        "x": 310,
+        "y": 960,
         "wires": [
             [
                 "3a3121fd4030960b"
@@ -485,10 +482,11 @@
         "proxy": "",
         "authType": "",
         "x": 390,
-        "y": 1200,
+        "y": 1080,
         "wires": [
             [
-                "1deaca9fa0bda892"
+                "1deaca9fa0bda892",
+                "0a9e6764bb38271d"
             ]
         ]
     },
@@ -509,8 +507,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 380,
-        "y": 1140,
+        "x": 360,
+        "y": 1020,
         "wires": [
             [
                 "64387045d85ed5ad"
@@ -542,8 +540,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 3,
-        "x": 570,
-        "y": 1140,
+        "x": 550,
+        "y": 1040,
         "wires": [
             [
                 "efcefd36274b9b14"
@@ -575,8 +573,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 790,
-        "y": 1060,
+        "x": 730,
+        "y": 1000,
         "wires": [
             [
                 "e1f531170158d4f5"
@@ -602,8 +600,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 690,
-        "y": 1000,
+        "x": 710,
+        "y": 900,
         "wires": [
             [
                 "e1f531170158d4f5"
@@ -616,8 +614,8 @@
         "z": "0dc4f3cdcca4aa50",
         "name": "Request unLOCK for MKX",
         "info": "",
-        "x": 150,
-        "y": 900,
+        "x": 110,
+        "y": 820,
         "wires": []
     },
     {
@@ -626,8 +624,8 @@
         "z": "0dc4f3cdcca4aa50",
         "name": "Request Remote Start",
         "info": "",
-        "x": 160,
-        "y": 1380,
+        "x": 100,
+        "y": 1200,
         "wires": []
     },
     {
@@ -651,8 +649,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 140,
-        "y": 1440,
+        "x": 120,
+        "y": 1240,
         "wires": [
             [
                 "b7beaa2adf1a5851"
@@ -664,14 +662,14 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "Remote Start",
-        "func": "//lets setup in NodeRed\nvar vin = \"REDACTED-ButRequired\";\nvar sessionID = \"REDACTED-ButRequired\";\n\nvar data = {\n    \"PARAMS\":{\n        \"apiLevel\":\"3\",\n        \"LOOKUPCODE\":\"START_CMD\",\n        \"VIN\": vin,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\n\nmsg.payload = jsonstr;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Start Command Called at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "//lets setup in NodeRed\nvar vin = \"--YOUR_VIN_HERE--\";\nvar sessionID = \"--YOUR_SESSIONid--\";\n\nvar data = {\n    \"PARAMS\":{\n        \"apiLevel\":\"3\",\n        \"LOOKUPCODE\":\"START_CMD\",\n        \"VIN\": vin,\n        \"SESSIONID\": sessionID\n        },\n    \"Entries\":{\n        \"Entry\":{\n            \"status\":\"Failed\"\n            }\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\n\nmsg.payload = jsonstr;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Start Command Called at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
-        "y": 1440,
+        "x": 270,
+        "y": 1260,
         "wires": [
             [
                 "76995d49ea43ed19"
@@ -691,8 +689,8 @@
         "persist": true,
         "proxy": "",
         "authType": "",
-        "x": 540,
-        "y": 1440,
+        "x": 340,
+        "y": 1220,
         "wires": [
             [
                 "c5ff26040136068b"
@@ -704,14 +702,14 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "Check Status",
-        "func": "//lets setup in NodeRed\nvar sessionID = \"REDACTED-ButRequired\";\nvar commandID = msg.req.commandID\nvar data = {\n    \"PARAMS\":{\n        \"COMMANDID\": commandID,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\nmsg.payload = data;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Status Requested at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "//lets setup in NodeRed\nvar sessionID = \"--YOUR_SESSIONid--\";\nvar commandID = msg.req.commandID\nvar data = {\n    \"PARAMS\":{\n        \"COMMANDID\": commandID,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\nmsg.payload = data;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Status Requested at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 640,
-        "y": 1500,
+        "x": 310,
+        "y": 1340,
         "wires": [
             [
                 "508d4cd60937b93b"
@@ -731,11 +729,12 @@
         "persist": true,
         "proxy": "",
         "authType": "",
-        "x": 510,
-        "y": 1640,
+        "x": 490,
+        "y": 1400,
         "wires": [
             [
-                "cd93a64877cee257"
+                "cd93a64877cee257",
+                "1c3b54a0ae119a88"
             ]
         ]
     },
@@ -756,8 +755,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 360,
-        "y": 1640,
+        "x": 340,
+        "y": 1400,
         "wires": [
             [
                 "22bbba56e0129738"
@@ -789,8 +788,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 3,
-        "x": 690,
-        "y": 1580,
+        "x": 670,
+        "y": 1400,
         "wires": [
             [
                 "2be4bf6178047350"
@@ -822,8 +821,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 930,
-        "y": 1500,
+        "x": 910,
+        "y": 1380,
         "wires": [
             [
                 "56b13e93a64c78c2"
@@ -849,8 +848,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 850,
-        "y": 1420,
+        "x": 710,
+        "y": 1300,
         "wires": [
             [
                 "56b13e93a64c78c2"
@@ -863,8 +862,8 @@
         "z": "0dc4f3cdcca4aa50",
         "name": "auto remote start if at work (leaving at 11pm)",
         "info": "",
-        "x": 190,
-        "y": 2040,
+        "x": 160,
+        "y": 2060,
         "wires": []
     },
     {
@@ -887,209 +886,11 @@
         "onceDelay": 0.1,
         "topic": "",
         "payloadType": "date",
-        "x": 160,
-        "y": 2080,
-        "wires": [
-            [
-                "1024e47f48e2fb20"
-            ]
-        ]
-    },
-    {
-        "id": "05c05ab9f74bd87a",
-        "type": "function",
-        "z": "0dc4f3cdcca4aa50",
-        "name": "Remote Start",
-        "func": "//lets setup in NodeRed\nvar vin = \"REDACTED-ButRequired\";\nvar sessionID = \"REDACTED-ButRequired\";\n\nvar data = {\n    \"PARAMS\":{\n        \"apiLevel\":\"3\",\n        \"LOOKUPCODE\":\"START_CMD\",\n        \"VIN\": vin,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\n\nmsg.payload = jsonstr;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Start Command Called at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 330,
-        "y": 2200,
-        "wires": [
-            [
-                "03d1929f0779e08a"
-            ]
-        ]
-    },
-    {
-        "id": "03d1929f0779e08a",
-        "type": "http request",
-        "z": "0dc4f3cdcca4aa50",
-        "name": "Send Request",
-        "method": "PUT",
-        "ret": "obj",
-        "paytoqs": "ignore",
-        "url": "https://phev.myfordmobile.com/services/webAddCommandPS",
-        "tls": "",
-        "persist": true,
-        "proxy": "",
-        "authType": "",
-        "x": 420,
-        "y": 2140,
-        "wires": [
-            [
-                "232914bbba5c7d5a"
-            ]
-        ]
-    },
-    {
-        "id": "11300255a70ebf1c",
-        "type": "function",
-        "z": "0dc4f3cdcca4aa50",
-        "name": "Check Status",
-        "func": "//lets setup in NodeRed\nvar sessionID = \"REDACTED-ButRequired\";\nvar commandID = msg.req.commandID\nvar data = {\n    \"PARAMS\":{\n        \"COMMANDID\": commandID,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\nmsg.payload = data;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Status Requested at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 660,
-        "y": 2180,
-        "wires": [
-            [
-                "d8847364e48f1501"
-            ]
-        ]
-    },
-    {
-        "id": "e98c93433971d88e",
-        "type": "http request",
-        "z": "0dc4f3cdcca4aa50",
-        "name": "Get Status",
-        "method": "PUT",
-        "ret": "obj",
-        "paytoqs": "ignore",
-        "url": "https://phev.myfordmobile.com/services/webGetRemoteCommandStatusPS",
-        "tls": "",
-        "persist": true,
-        "proxy": "",
-        "authType": "",
-        "x": 530,
-        "y": 2280,
-        "wires": [
-            [
-                "69a9a85ffda6bf72"
-            ]
-        ]
-    },
-    {
-        "id": "d8847364e48f1501",
-        "type": "delay",
-        "z": "0dc4f3cdcca4aa50",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "10",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 380,
-        "y": 2280,
-        "wires": [
-            [
-                "e98c93433971d88e"
-            ]
-        ]
-    },
-    {
-        "id": "69a9a85ffda6bf72",
-        "type": "switch",
-        "z": "0dc4f3cdcca4aa50",
-        "name": "Que Check",
-        "property": "payload.Entries.Entry.status",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "QUEUED",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "COMPLETED",
-                "vt": "str"
-            },
-            {
-                "t": "nnull"
-            }
-        ],
-        "checkall": "false",
-        "repair": false,
-        "outputs": 3,
-        "x": 710,
-        "y": 2280,
-        "wires": [
-            [
-                "1b0f9c4c7f387329"
-            ],
-            [
-                "20b5b02d1c9fdbb2"
-            ],
-            [
-                "20b5b02d1c9fdbb2"
-            ]
-        ]
-    },
-    {
-        "id": "1b0f9c4c7f387329",
-        "type": "change",
-        "z": "0dc4f3cdcca4aa50",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "url",
-                "pt": "msg",
-                "to": "",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 870,
-        "y": 2240,
-        "wires": [
-            [
-                "11300255a70ebf1c"
-            ]
-        ]
-    },
-    {
-        "id": "d684283e93cff29f",
-        "type": "change",
-        "z": "0dc4f3cdcca4aa50",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "req.commandID",
-                "pt": "msg",
-                "to": "payload.COMMANDID",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 750,
+        "x": 140,
         "y": 2100,
         "wires": [
             [
-                "11300255a70ebf1c"
+                "1024e47f48e2fb20"
             ]
         ]
     },
@@ -1111,8 +912,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 550,
-        "y": 500,
+        "x": 470,
+        "y": 480,
         "wires": [
             [
                 "903d2f80c8fd1bc6"
@@ -1141,7 +942,7 @@
         "repair": false,
         "outputs": 2,
         "x": 490,
-        "y": 940,
+        "y": 880,
         "wires": [
             [
                 "33bc122e0b518e75"
@@ -1169,60 +970,14 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 610,
-        "y": 1380,
+        "x": 490,
+        "y": 1260,
         "wires": [
             [
                 "2edb1ecb3c2b3c69"
             ],
             [
                 "dffe259dcf0826ae"
-            ]
-        ]
-    },
-    {
-        "id": "577629958b84c524",
-        "type": "debug",
-        "z": "0dc4f3cdcca4aa50",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 970,
-        "y": 1260,
-        "wires": []
-    },
-    {
-        "id": "232914bbba5c7d5a",
-        "type": "switch",
-        "z": "0dc4f3cdcca4aa50",
-        "name": "Proper Response",
-        "property": "payload.COMMANDID",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "null"
-            },
-            {
-                "t": "nnull"
-            }
-        ],
-        "checkall": "false",
-        "repair": false,
-        "outputs": 2,
-        "x": 510,
-        "y": 2080,
-        "wires": [
-            [
-                "0d7e1a37f078af42"
-            ],
-            [
-                "d684283e93cff29f"
             ]
         ]
     },
@@ -1244,7 +999,7 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 570,
+        "x": 510,
         "y": 40,
         "wires": [
             [
@@ -1278,11 +1033,10 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 750,
-        "y": 1300,
+        "x": 700,
+        "y": 1240,
         "wires": [
             [
-                "577629958b84c524",
                 "02f28ff9c5fdab24"
             ],
             [
@@ -1308,7 +1062,7 @@
         "proxy": "",
         "authType": "",
         "senderr": false,
-        "x": 330,
+        "x": 310,
         "y": 280,
         "wires": [
             [
@@ -1321,14 +1075,14 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "Refresh Token",
-        "func": "//lets setup in NodeRed\n\nvar sessionID = \"REDACTED-ButRequired\";\nvar data = {\n    \"refresh_token\":\"REDACTED-ButRequired\"\n    };\nvar jsonstr = JSON.stringify(data);\n\nvar url = \"https://api.mps.ford.com/api/oauth2/v1/refresh\";\n\n\n\nmsg.payload = data;\nmsg.headers = {};\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\n//msg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\nmsg.headers['application-id'] = '45133B88-0671-4AAF-B8D1-99E684ED4E45';\nmsg.url = url;\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Requested Token Refresh at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "//lets setup in NodeRed\n\nvar sessionID = \"--YOUR_SESSIONid--\";\nvar data = {\n    \"refresh_token\":\"--YOUR_REFRESH_TOKEN--\"\n    };\nvar jsonstr = JSON.stringify(data);\n\nvar url = \"https://api.mps.ford.com/api/oauth2/v1/refresh\";\n\n\n\nmsg.payload = data;\nmsg.headers = {};\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\n//msg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\nmsg.headers['application-id'] = '45133B88-0671-4AAF-B8D1-99E684ED4E45';\nmsg.url = url;\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Requested Token Refresh at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 130,
-        "y": 300,
+        "x": 140,
+        "y": 280,
         "wires": [
             [
                 "97623d6ea4695492"
@@ -1381,7 +1135,7 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 530,
+        "x": 490,
         "y": 280,
         "wires": [
             [
@@ -1398,8 +1152,8 @@
         "z": "0dc4f3cdcca4aa50",
         "name": "Refresh Token",
         "info": "",
-        "x": 120,
-        "y": 180,
+        "x": 70,
+        "y": 200,
         "wires": []
     },
     {
@@ -1419,7 +1173,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 740,
+        "x": 690,
         "y": 240,
         "wires": [
             []
@@ -1430,14 +1184,14 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "Update Flow Variables",
-        "func": "flow.set([\"latitude\"], parseFloat(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.vehicleLatitude));\nflow.set([\"longitude\"], parseFloat(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.vehicleLongitude));\nflow.set([\"remoteStartStatus\"], msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.remoteStartStatus);\nflow.set([\"remoteStartDuration\"], parseInt(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.remoteStartDuration));\nflow.set([\"battery\"], msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.batteryHealth);\nflow.set([\"odometer\"], parseInt(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.odometer));\nflow.set([\"fuelLevel\"], parseInt(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.fuelLevel));\nflow.set([\"tirePressure\"], msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.tirePressure);\n\n//Sometimes Lincoln reports oil life at 0 when it isnt\n//Check previous result and keep old result if current =0\nvar oilLife = parseInt(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.oilLife);\nvar prevOilLife = flow.get([\"oilLife\"]);\nif ((oilLife == 0) && (prevOilLife >4)){}\nelse\n    flow.set([\"oilLife\"], oilLife);\n\n\n\n////////////////////////\n//////////////////////\n///Check Distance//////\n//////////////////////\nfunction distance(lat1, lon1, lat2, lon2, unit) {\n    var radlat1 = Math.PI * lat1/180\n    var radlat2 = Math.PI * lat2/180\n    var radlon1 = Math.PI * lon1/180\n    var radlon2 = Math.PI * lon2/180\n    var theta = lon1-lon2\n    var radtheta = Math.PI * theta/180\n    var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);\n    dist = Math.acos(dist)\n    dist = dist * 180/Math.PI\n    dist = dist * 60 * 1.1515\n    if (unit==\"K\") { dist = dist * 1.609344 }\n    if (unit==\"N\") { dist = dist * 0.8684 }\n    return dist\n}\n//37.47194360493601, -77.43292258576192 --PMUSA\n//flow val 37.4715, -77.436\n//var test = distance(37.47194360493601, -77.43292258576192, Math.floor(flow.get([\"latitude\"])), Math.floor(flow.get([\"longitude\"])));\nvar carLat =  parseFloat(flow.get([\"latitude\"]));\nvar carLon =  parseFloat(flow.get([\"longitude\"]));\nvar test = distance(37.47194360493601, -77.43292258576192,  carLat, carLon);\n//round to 3 decimal places\nif (test < 1.2)\n    flow.set([\"atWork\"], true);\nelse\n    flow.set([\"atWork\"], false);\n\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Current Fuel Level ${flow.get([\"fuelLevel\"])} at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "flow.set([\"latitude\"], parseFloat(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.vehicleLatitude));\nflow.set([\"longitude\"], parseFloat(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.vehicleLongitude));\nvar startStatus = msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.remoteStartStatus;\nstartStatus = startStatus.slice(2);\nflow.set([\"remoteStartStatus\"], startStatus);\nflow.set([\"remoteStartDuration\"], parseInt(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.remoteStartDuration));\nvar battery = msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.batteryHealth;\nbattery = battery.slice(2);\nflow.set([\"battery\"], battery);\nvar numb = parseInt(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.odometer)*0.621371;\nflow.set([\"odometer\"], parseInt(numb));\nflow.set([\"fuelLevel\"], parseInt(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.fuelLevel));\nvar tire = msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.tirePressure;\ntire = tire.slice(2);\nflow.set([\"tirePressure\"], tire);\n\n//Sometimes Lincoln reports oil life at 0 when it isnt\n//Check previous result and keep old result if current =0\nvar oilLife = parseInt(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.oilLife);\nvar prevOilLife = flow.get([\"oilLife\"]);\nif ((oilLife == 0) && (prevOilLife >4)){}\nelse\n    flow.set([\"oilLife\"], oilLife);\n\n\n\n////////////////////////\n//////////////////////\n///Check Distance//////\n//////////////////////\nfunction distance(lat1, lon1, lat2, lon2, unit) {\n    var radlat1 = Math.PI * lat1/180\n    var radlat2 = Math.PI * lat2/180\n    var radlon1 = Math.PI * lon1/180\n    var radlon2 = Math.PI * lon2/180\n    var theta = lon1-lon2\n    var radtheta = Math.PI * theta/180\n    var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);\n    dist = Math.acos(dist)\n    dist = dist * 180/Math.PI\n    dist = dist * 60 * 1.1515\n    if (unit==\"K\") { dist = dist * 1.609344 }\n    if (unit==\"N\") { dist = dist * 0.8684 }\n    return dist\n}\n//37.47194360493601, -77.43292258576192 --PMUSA\n//flow val 37.4715, -77.436\n//var test = distance(37.47194360493601, -77.43292258576192, Math.floor(flow.get([\"latitude\"])), Math.floor(flow.get([\"longitude\"])));\nvar carLat =  parseFloat(flow.get([\"latitude\"]));\nvar carLon =  parseFloat(flow.get([\"longitude\"]));\nvar test = distance(37.47194360493601, -77.43292258576192,  carLat, carLon);\n//round to 3 decimal places\nif (test < 1.2)\n    flow.set([\"atWork\"], true);\nelse\n    flow.set([\"atWork\"], false);\n\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Current Fuel Level ${flow.get([\"fuelLevel\"])} at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 560,
-        "y": 100,
+        "x": 540,
+        "y": 80,
         "wires": [
             [
                 "8b4196429d69f26e"
@@ -1445,32 +1199,10 @@
         ]
     },
     {
-        "id": "e3e5e02439eb9a45",
-        "type": "http request",
-        "z": "0dc4f3cdcca4aa50",
-        "name": "Get Weather",
-        "method": "GET",
-        "ret": "obj",
-        "paytoqs": "ignore",
-        "url": "https://api.weather.gov/gridpoints/AKQ/45,73/forecast/hourly",
-        "tls": "",
-        "persist": true,
-        "proxy": "",
-        "authType": "",
-        "senderr": false,
-        "x": 170,
-        "y": 1960,
-        "wires": [
-            [
-                "d0a2c495b98e3b29"
-            ]
-        ]
-    },
-    {
         "id": "ec8a6b917897f575",
         "type": "inject",
         "z": "0dc4f3cdcca4aa50",
-        "name": "Request at 10:30pm",
+        "name": "Request at 6:30pm",
         "props": [
             {
                 "p": "payload"
@@ -1481,144 +1213,16 @@
             }
         ],
         "repeat": "",
-        "crontab": "30 20 * * *",
+        "crontab": "30 18 * * *",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
         "payloadType": "date",
-        "x": 220,
+        "x": 130,
         "y": 1900,
         "wires": [
             [
-                "e3e5e02439eb9a45"
-            ]
-        ]
-    },
-    {
-        "id": "d0a2c495b98e3b29",
-        "type": "function",
-        "z": "0dc4f3cdcca4aa50",
-        "name": "Pull weather and Check if at work",
-        "func": "/*\nI normally leave work at 11pm\nSo I am grabbing the temperature for that time\nand storing it into a file in case the server is down\n*/\nvar payload = msg.payload;\n//msg.temperature = 0;\nvar date = new Date().toISOString('en-US', {\n    year: 'numeric',\n    month: '2-digit',\n    day: 'numeric'\n}).split('T')[0]\ndate += \"T23:00\"; //look for 11pm\n\n\n//Verify Server Response\nif (msg.statusCode == 200)\n{\n    //Find Time Slot I need to use\n    for(var i = 0; i < payload.properties.periods.length; i++)\n    {\n        startTime = payload.properties.periods[i].startTime;\n        if(startTime.includes(date))\n        {\n            msg.temperature = payload.properties.periods[i].temperature;\n            msg.temptmrw = payload.properties.periods[i+1].temperature;\n            flow.set([\"temperature\"], msg.temperature);\n            flow.set([\"temptmrw\"], msg.temptmrw);\n        }\n    }\n}\nelse\n{\n    if (flow.get([\"temptmrw\"]) == null)\n    {\n        //no temp known\n        flow.set([\"temperature\"], global.get('homeassistant.homeAssistant.states[\"weather.home_2\"].attributes.temperature'));\n        //We will ask our weather sensor\n        //May be useless though as it will report home weather\n        //not where the vehicle is located\n        \n    }\n    else\n    {\n        flow.set([\"temperature\"], flow.get([\"temptmrw\"]));\n        flow.set([\"temptmrw\"], null);\n    }\n}\n\n////////////////////////\n//////////////////////\n///Check Distance//////\n//////////////////////\nfunction distance(lat1, lon1, lat2, lon2, unit) {\n    var radlat1 = Math.PI * lat1/180\n    var radlat2 = Math.PI * lat2/180\n    var radlon1 = Math.PI * lon1/180\n    var radlon2 = Math.PI * lon2/180\n    var theta = lon1-lon2\n    var radtheta = Math.PI * theta/180\n    var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);\n    dist = Math.acos(dist)\n    dist = dist * 180/Math.PI\n    dist = dist * 60 * 1.1515\n    if (unit==\"K\") { dist = dist * 1.609344 }\n    if (unit==\"N\") { dist = dist * 0.8684 }\n    return dist\n}\n//37.47194360493601, -77.43292258576192 --PMUSA\n//flow val 37.4715, -77.436\n//var test = distance(37.47194360493601, -77.43292258576192, Math.floor(flow.get([\"latitude\"])), Math.floor(flow.get([\"longitude\"])));\nvar carLat =  parseFloat(flow.get([\"latitude\"]));\nvar carLon =  parseFloat(flow.get([\"longitude\"]));\nvar test = distance(37.47194360493601, -77.43292258576192,  carLat, carLon);\n//round to 3 decimal places\nif (test < 1.2)\n    flow.set([\"atWork\"], true);\nelse\n    flow.set([\"atWork\"], false);\n\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar statusText = `11pm temp is: ${msg.temperature}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 400,
-        "y": 1960,
-        "wires": [
-            [
-                "e0ed304ecaa644a0"
-            ]
-        ]
-    },
-    {
-        "id": "5b8f7e4bcb24da3d",
-        "type": "function",
-        "z": "0dc4f3cdcca4aa50",
-        "name": "",
-        "func": "\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour: 'numeric',\n    minute: 'numeric'\n});\ndate = date.replace(\",\", \" \");\n\nmsg.payload = {\n    \"Time\" : date,\n    \"Message Title\" : global.get(['homeassistant.homeAssistant.states[\"sensor.krystenscell_last_notification\"].attributes[\"android.title\"]']).toString(),\n    \"Message Text\" : global.get(['homeassistant.homeAssistant.states[\"sensor.krystenscell_last_notification\"].attributes[\"android.text\"]']).toString()\n}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 140,
-        "y": 2920,
-        "wires": [
-            [
-                "fd845504d208f73a"
-            ]
-        ]
-    },
-    {
-        "id": "28d1d4fa6525bfa4",
-        "type": "file",
-        "z": "0dc4f3cdcca4aa50",
-        "name": "climate.history.csv",
-        "filename": "/config/www/krys.csv",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "false",
-        "encoding": "none",
-        "x": 430,
-        "y": 2920,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "fd845504d208f73a",
-        "type": "csv",
-        "z": "0dc4f3cdcca4aa50",
-        "name": "",
-        "sep": ",",
-        "hdrin": true,
-        "hdrout": "once",
-        "multi": "mult",
-        "ret": "\\n",
-        "temp": "",
-        "skip": "0",
-        "strings": true,
-        "include_empty_strings": true,
-        "include_null_values": true,
-        "x": 270,
-        "y": 2920,
-        "wires": [
-            [
-                "28d1d4fa6525bfa4"
-            ]
-        ]
-    },
-    {
-        "id": "e485536890460008",
-        "type": "server-state-changed",
-        "z": "0dc4f3cdcca4aa50",
-        "name": "notify",
-        "server": "da3b2d1e.ad751",
-        "version": 3,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "entityidfilter": "sensor.krystenscell_last_notification",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "str",
-        "haltifstate": "",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "outputs": 1,
-        "output_only_on_state_change": true,
-        "for": 0,
-        "forType": "num",
-        "forUnits": "minutes",
-        "ignorePrevStateNull": false,
-        "ignorePrevStateUnknown": false,
-        "ignorePrevStateUnavailable": false,
-        "ignoreCurrentStateUnknown": false,
-        "ignoreCurrentStateUnavailable": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            }
-        ],
-        "x": 130,
-        "y": 2880,
-        "wires": [
-            [
-                "5b8f7e4bcb24da3d"
+                "5cfe41b383d73764"
             ]
         ]
     },
@@ -1626,9 +1230,9 @@
         "id": "e53973b58eb9ed69",
         "type": "comment",
         "z": "0dc4f3cdcca4aa50",
-        "name": "Get 11pm Temp",
+        "name": "Get Temp for 11pm",
         "info": "",
-        "x": 100,
+        "x": 90,
         "y": 1860,
         "wires": []
     },
@@ -1654,8 +1258,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 150,
-        "y": 2120,
+        "x": 350,
+        "y": 2100,
         "wires": [
             [
                 "76f66de5284feaf6"
@@ -1663,29 +1267,6 @@
             [
                 "76f66de5284feaf6"
             ]
-        ]
-    },
-    {
-        "id": "0d7e1a37f078af42",
-        "type": "api-call-service",
-        "z": "0dc4f3cdcca4aa50",
-        "name": "Failed",
-        "server": "da3b2d1e.ad751",
-        "version": 3,
-        "debugenabled": false,
-        "service_domain": "notify",
-        "service": "mobile_app_chriscell",
-        "entityId": "",
-        "data": "{\"title\":\"Command Failed\",\"message\":\"Token or SessionID is probably invaild\",\"data\":{\"colour\":\"red\"}}",
-        "dataType": "json",
-        "mergecontext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 670,
-        "y": 2040,
-        "wires": [
-            []
         ]
     },
     {
@@ -1705,8 +1286,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 970,
-        "y": 1320,
+        "x": 890,
+        "y": 1260,
         "wires": [
             [
                 "02f28ff9c5fdab24"
@@ -1730,8 +1311,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 670,
-        "y": 880,
+        "x": 650,
+        "y": 840,
         "wires": [
             [
                 "0f520d2deb246314"
@@ -1755,7 +1336,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 710,
+        "x": 630,
         "y": 440,
         "wires": [
             [
@@ -1780,7 +1361,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 770,
+        "x": 690,
         "y": 20,
         "wires": [
             []
@@ -1799,7 +1380,10 @@
             "d880099869696a7e",
             "d8ed75f35cccaead",
             "d84bbdbdb91b49c4",
-            "c2a50da9b2cdc12d"
+            "c2a50da9b2cdc12d",
+            "5e9f77340aec0d07",
+            "0157b742149647f8",
+            "870f94513d498f50"
         ],
         "x": 75,
         "y": 120,
@@ -1808,19 +1392,6 @@
                 "b7570dccfb6ece8a"
             ]
         ]
-    },
-    {
-        "id": "30ae179111a32de6",
-        "type": "link out",
-        "z": "0dc4f3cdcca4aa50",
-        "name": "",
-        "mode": "link",
-        "links": [
-            "2deef0df32fb9597"
-        ],
-        "x": 1075,
-        "y": 2220,
-        "wires": []
     },
     {
         "id": "8acdb8bdf600e8bc",
@@ -1839,8 +1410,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 770,
-        "y": 700,
+        "x": 710,
+        "y": 660,
         "wires": [
             [
                 "cfe3d1e6147a1a19"
@@ -1864,8 +1435,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 750,
-        "y": 1140,
+        "x": 730,
+        "y": 1040,
         "wires": [
             [
                 "139d975732fe2569"
@@ -1889,36 +1460,11 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 890,
-        "y": 1580,
+        "x": 850,
+        "y": 1420,
         "wires": [
             [
                 "e6e97c6dcf3c8fca"
-            ]
-        ]
-    },
-    {
-        "id": "20b5b02d1c9fdbb2",
-        "type": "api-call-service",
-        "z": "0dc4f3cdcca4aa50",
-        "name": "Send Result",
-        "server": "da3b2d1e.ad751",
-        "version": 3,
-        "debugenabled": false,
-        "service_domain": "notify",
-        "service": "mobile_app_chriscell",
-        "entityId": "",
-        "data": "\t{\t   \"title\": msg.payload.Entries.Entry.lookupcode,\t   \"message\": msg.payload.Entries.Entry.status,\t   \"data\": {        \"colour\": \"red\"    }\t}",
-        "dataType": "jsonata",
-        "mergecontext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 950,
-        "y": 2280,
-        "wires": [
-            [
-                "30ae179111a32de6"
             ]
         ]
     },
@@ -1927,46 +1473,17 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "Update Flow Variables",
-        "func": "flow.set([\"zaccess_token\"], msg.payload.access_token);\nflow.set([\"zrefresh_token\"], msg.payload.refresh_token);\nflow.set([\"zcat1_token\"], msg.payload.cat1_token);\nflow.set([\"userId\"], msg.payload.userId);\nflow.set([\"zexpires_in\"], msg.payload.expires_in);\nflow.set([\"zrefresh_expires_in\"], msg.payload.refresh_expires_in);\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Current Toeken Expires in: ${flow.get([\"zrefresh_expires_in\"])}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "flow.set([\"zaccess_token\"], msg.payload.access_token);\nflow.set([\"zrefresh_token\"], msg.payload.refresh_token);\nflow.set([\"zcat1_token\"], msg.payload.cat1_token);\nflow.set([\"userId\"], msg.payload.userId);\nflow.set([\"zexpires_in\"], msg.payload.expires_in);\nflow.set([\"zrefresh_expires_in\"], msg.payload.refresh_expires_in);\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Current Token Expires in: ${flow.get([\"zrefresh_expires_in\"])}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 580,
+        "x": 520,
         "y": 320,
         "wires": [
             [
                 "a07fedb0999c1a42"
-            ]
-        ]
-    },
-    {
-        "id": "51897797d9e383aa",
-        "type": "inject",
-        "z": "0dc4f3cdcca4aa50",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 1120,
-        "y": 80,
-        "wires": [
-            [
-                "8b4196429d69f26e"
             ]
         ]
     },
@@ -1981,7 +1498,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1330,
+        "x": 1010,
         "y": 80,
         "wires": [
             [
@@ -1999,8 +1516,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 1280,
-        "y": 120,
+        "x": 1220,
+        "y": 80,
         "wires": [
             [
                 "033e569d744644cc"
@@ -2018,30 +1535,13 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 1180,
-        "y": 300,
+        "x": 1040,
+        "y": 280,
         "wires": [
             [
                 "c072f5f1dfbedceb"
             ]
         ]
-    },
-    {
-        "id": "8a107f22cb4d47d7",
-        "type": "debug",
-        "z": "0dc4f3cdcca4aa50",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1530,
-        "y": 260,
-        "wires": []
     },
     {
         "id": "82559da1fb3128a1",
@@ -2060,11 +1560,11 @@
         "repeat": "",
         "crontab": "",
         "once": true,
-        "onceDelay": 0.1,
+        "onceDelay": "7",
         "topic": "",
         "payloadType": "date",
-        "x": 1130,
-        "y": 260,
+        "x": 990,
+        "y": 240,
         "wires": [
             [
                 "884589aa34e40e0b"
@@ -2082,11 +1582,10 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1350,
-        "y": 260,
+        "x": 1230,
+        "y": 280,
         "wires": [
             [
-                "8a107f22cb4d47d7",
                 "033e569d744644cc"
             ]
         ]
@@ -2106,26 +1605,13 @@
         "checkall": "false",
         "repair": false,
         "outputs": 1,
-        "x": 140,
-        "y": 2200,
+        "x": 540,
+        "y": 2100,
         "wires": [
             [
-                "05c05ab9f74bd87a"
+                "5b50f89c4d13ad07"
             ]
         ]
-    },
-    {
-        "id": "e0ed304ecaa644a0",
-        "type": "link out",
-        "z": "0dc4f3cdcca4aa50",
-        "name": "",
-        "mode": "link",
-        "links": [
-            "2deef0df32fb9597"
-        ],
-        "x": 575,
-        "y": 1920,
-        "wires": []
     },
     {
         "id": "a07fedb0999c1a42",
@@ -2136,8 +1622,8 @@
         "links": [
             "2deef0df32fb9597"
         ],
-        "x": 775,
-        "y": 340,
+        "x": 655,
+        "y": 320,
         "wires": []
     },
     {
@@ -2146,7 +1632,7 @@
         "z": "0dc4f3cdcca4aa50",
         "name": "Store Flow Values to file",
         "info": "",
-        "x": 1130,
+        "x": 980,
         "y": 40,
         "wires": []
     },
@@ -2156,7 +1642,7 @@
         "z": "0dc4f3cdcca4aa50",
         "name": "Retrieve Flow Values from file",
         "info": "",
-        "x": 1160,
+        "x": 1000,
         "y": 200,
         "wires": []
     },
@@ -2497,7 +1983,8 @@
                 "789d3e6209089de5",
                 "8514e31af9086d3f",
                 "d2464ea3535804e9",
-                "c1b1e76b2452fc6e"
+                "c1b1e76b2452fc6e",
+                "2a6f36dd3a1e99c0"
             ]
         ]
     },
@@ -2510,8 +1997,8 @@
         "links": [
             "017b5bdf64a32288"
         ],
-        "x": 1525,
-        "y": 200,
+        "x": 1335,
+        "y": 180,
         "wires": []
     },
     {
@@ -2579,8 +2066,8 @@
                 "valueType": "triggerId"
             }
         ],
-        "x": 120,
-        "y": 620,
+        "x": 80,
+        "y": 520,
         "wires": [
             [
                 "aac5d862e31f9f45"
@@ -2605,11 +2092,12 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 900,
+        "x": 780,
         "y": 440,
         "wires": [
             [
-                "c2a50da9b2cdc12d"
+                "c2a50da9b2cdc12d",
+                "2291bd599dc348fb"
             ]
         ]
     },
@@ -2668,8 +2156,8 @@
                 "valueType": "triggerId"
             }
         ],
-        "x": 130,
-        "y": 1060,
+        "x": 90,
+        "y": 900,
         "wires": [
             [
                 "9ef5e17b0b39aff3"
@@ -2694,11 +2182,12 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 960,
-        "y": 1140,
+        "x": 900,
+        "y": 1040,
         "wires": [
             [
-                "d84bbdbdb91b49c4"
+                "d84bbdbdb91b49c4",
+                "d6789e9b060c1e4c"
             ]
         ]
     },
@@ -2719,11 +2208,12 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 860,
-        "y": 880,
+        "x": 800,
+        "y": 840,
         "wires": [
             [
-                "d84bbdbdb91b49c4"
+                "d84bbdbdb91b49c4",
+                "d6789e9b060c1e4c"
             ]
         ]
     },
@@ -2744,11 +2234,12 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 980,
-        "y": 700,
+        "x": 880,
+        "y": 620,
         "wires": [
             [
-                "c2a50da9b2cdc12d"
+                "c2a50da9b2cdc12d",
+                "2291bd599dc348fb"
             ]
         ]
     },
@@ -2807,8 +2298,8 @@
                 "valueType": "triggerId"
             }
         ],
-        "x": 120,
-        "y": 1500,
+        "x": 100,
+        "y": 1280,
         "wires": [
             [
                 "b7beaa2adf1a5851"
@@ -2833,11 +2324,12 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1160,
-        "y": 1280,
+        "x": 960,
+        "y": 1200,
         "wires": [
             [
-                "d8ed75f35cccaead"
+                "d8ed75f35cccaead",
+                "42944826540f2520"
             ]
         ]
     },
@@ -2858,11 +2350,12 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1100,
-        "y": 1580,
+        "x": 1040,
+        "y": 1420,
         "wires": [
             [
-                "d8ed75f35cccaead"
+                "d8ed75f35cccaead",
+                "42944826540f2520"
             ]
         ]
     },
@@ -2910,8 +2403,8 @@
         "outputOnStateChange": false,
         "outputPayload": "$entity().state ? \"on\": \"off\"",
         "outputPayloadType": "jsonata",
-        "x": 1980,
-        "y": 500,
+        "x": 2020,
+        "y": 600,
         "wires": [
             [
                 "d6584529632e5526"
@@ -2927,17 +2420,25 @@
         "propertyType": "flow",
         "rules": [
             {
+                "t": "lt",
+                "v": "1",
+                "vt": "num"
+            },
+            {
                 "t": "gt",
-                "v": "29",
+                "v": "1",
                 "vt": "num"
             }
         ],
-        "checkall": "true",
+        "checkall": "false",
         "repair": false,
-        "outputs": 1,
-        "x": 2230,
-        "y": 500,
+        "outputs": 2,
+        "x": 2270,
+        "y": 600,
         "wires": [
+            [
+                "0157b742149647f8"
+            ],
             [
                 "87035058a0e4202c"
             ]
@@ -2949,7 +2450,7 @@
         "z": "0dc4f3cdcca4aa50",
         "name": "",
         "pauseType": "delay",
-        "timeout": "30",
+        "timeout": "5",
         "timeoutUnits": "seconds",
         "rate": "1",
         "nbRateUnits": "1",
@@ -2961,7 +2462,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 2440,
-        "y": 500,
+        "y": 620,
         "wires": [
             [
                 "941feb247ba78f3c"
@@ -2977,8 +2478,8 @@
         "links": [
             "2deef0df32fb9597"
         ],
-        "x": 1315,
-        "y": 1420,
+        "x": 1095,
+        "y": 1320,
         "wires": []
     },
     {
@@ -2990,8 +2491,8 @@
         "links": [
             "2deef0df32fb9597"
         ],
-        "x": 1115,
-        "y": 1000,
+        "x": 955,
+        "y": 940,
         "wires": []
     },
     {
@@ -3003,8 +2504,8 @@
         "links": [
             "2deef0df32fb9597"
         ],
-        "x": 1155,
-        "y": 560,
+        "x": 935,
+        "y": 520,
         "wires": []
     },
     {
@@ -3025,12 +2526,12 @@
                 "value": ""
             }
         ],
-        "entityidfilter": "sensor.mkx_remote_duration",
+        "entityidfilter": "sensor.mkx_remote_status",
         "entityidfiltertype": "exact",
         "outputinitially": false,
         "state_type": "str",
-        "haltifstate": "10",
-        "halt_if_type": "num",
+        "haltifstate": "W_STATUS_TRUE",
+        "halt_if_type": "str",
         "halt_if_compare": "is",
         "outputs": 2,
         "output_only_on_state_change": true,
@@ -3046,15 +2547,15 @@
             {
                 "property": "remoteStartTimeLeft",
                 "propertyType": "flow",
-                "value": "10",
+                "value": "600",
                 "valueType": "num"
             }
         ],
-        "x": 1630,
-        "y": 540,
+        "x": 1760,
+        "y": 600,
         "wires": [
             [
-                "33fd94f714bafda7"
+                "9a2e93c252d98476"
             ],
             []
         ]
@@ -3063,15 +2564,15 @@
         "id": "941feb247ba78f3c",
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
-        "name": "reduce time by 30sec",
-        "func": "flow.set([\"remoteStartTimeLeft\"], flow.get([\"remoteStartTimeLeft\"])-.5);\n\nreturn msg;",
+        "name": "reduce time by 5sec",
+        "func": "flow.set([\"remoteStartTimeLeft\"], flow.get([\"remoteStartTimeLeft\"])-5);\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2180,
-        "y": 620,
+        "x": 2350,
+        "y": 700,
         "wires": [
             [
                 "9a2e93c252d98476"
@@ -3079,17 +2580,251 @@
         ]
     },
     {
-        "id": "33fd94f714bafda7",
+        "id": "2a6f36dd3a1e99c0",
+        "type": "ha-entity",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "mkx.remoteStatus",
+        "server": "da3b2d1e.ad751",
+        "version": 1,
+        "debugenabled": false,
+        "outputs": 1,
+        "entityType": "sensor",
+        "config": [
+            {
+                "property": "name",
+                "value": "MKX Remote Status"
+            },
+            {
+                "property": "device_class",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": ""
+            }
+        ],
+        "state": "remoteStartStatus",
+        "stateType": "flow",
+        "attributes": [
+            {
+                "property": "entity_id",
+                "value": "sensor.mkx.remoteStatus",
+                "valueType": "str"
+            }
+        ],
+        "resend": true,
+        "outputLocation": "payload",
+        "outputLocationType": "none",
+        "inputOverride": "allow",
+        "outputOnStateChange": false,
+        "outputPayload": "$entity().state ? \"on\": \"off\"",
+        "outputPayloadType": "jsonata",
+        "x": 2030,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "94d1429bcae15831",
+        "type": "comment",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "Cancel Remote Start",
+        "info": "",
+        "x": 90,
+        "y": 1540,
+        "wires": []
+    },
+    {
+        "id": "61618c6656ebcbc0",
+        "type": "inject",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 1580,
+        "wires": [
+            [
+                "76b8a9cc77eceef9"
+            ]
+        ]
+    },
+    {
+        "id": "76b8a9cc77eceef9",
+        "type": "function",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "Cancel Remote Start",
+        "func": "//lets setup in NodeRed\nvar vin = \"--YOUR_VIN_HERE--\";\nvar sessionID = \"--YOUR_SESSIONid--\";\n\nvar data = {\n    \"PARAMS\":{\n        \"apiLevel\":\"3\",\n        \"LOOKUPCODE\":\"CANCEL_START_CMD\",\n        \"VIN\": vin,\n        \"SESSIONID\": sessionID\n        },\n    \"Entries\":{\n        \"Entry\":{\n            \"status\":\"Failed\"\n            }\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\n\nmsg.payload = jsonstr;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Start Command Called at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 290,
+        "y": 1600,
+        "wires": [
+            [
+                "57b18249fbab5343"
+            ]
+        ]
+    },
+    {
+        "id": "57b18249fbab5343",
+        "type": "http request",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "Send Request",
+        "method": "PUT",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://phev.myfordmobile.com/services/webAddCommandPS",
+        "tls": "",
+        "persist": true,
+        "proxy": "",
+        "authType": "",
+        "x": 380,
+        "y": 1560,
+        "wires": [
+            [
+                "955c00be512f9b91"
+            ]
+        ]
+    },
+    {
+        "id": "6359ac2f80e99e86",
+        "type": "function",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "Check Status",
+        "func": "//lets setup in NodeRed\nvar sessionID = \"--YOUR_SESSIONid--\";\nvar commandID = msg.req.commandID\nvar data = {\n    \"PARAMS\":{\n        \"COMMANDID\": commandID,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\nmsg.payload = data;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Status Requested at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 1660,
+        "wires": [
+            [
+                "9b06e78b5b673365"
+            ]
+        ]
+    },
+    {
+        "id": "97067b0bd33c9cc9",
+        "type": "http request",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "Get Status",
+        "method": "PUT",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://phev.myfordmobile.com/services/webGetRemoteCommandStatusPS",
+        "tls": "",
+        "persist": true,
+        "proxy": "",
+        "authType": "",
+        "x": 470,
+        "y": 1740,
+        "wires": [
+            [
+                "7114fb70a31d575a",
+                "1dbf75a75028fc36"
+            ]
+        ]
+    },
+    {
+        "id": "9b06e78b5b673365",
+        "type": "delay",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 1740,
+        "wires": [
+            [
+                "97067b0bd33c9cc9"
+            ]
+        ]
+    },
+    {
+        "id": "7114fb70a31d575a",
+        "type": "switch",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "Que Check",
+        "property": "payload.Entries.Entry.status",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "QUEUED",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "COMPLETED",
+                "vt": "str"
+            },
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 3,
+        "x": 650,
+        "y": 1740,
+        "wires": [
+            [
+                "4cf906831f3708ab"
+            ],
+            [
+                "ceca70e87f5634d8"
+            ],
+            [
+                "ceca70e87f5634d8"
+            ]
+        ]
+    },
+    {
+        "id": "4cf906831f3708ab",
         "type": "change",
         "z": "0dc4f3cdcca4aa50",
         "name": "",
         "rules": [
             {
                 "t": "set",
-                "p": "remoteStartTimeLeft",
-                "pt": "flow",
-                "to": "600",
-                "tot": "num"
+                "p": "url",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -3097,13 +2832,771 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1790,
-        "y": 600,
+        "x": 850,
+        "y": 1700,
         "wires": [
             [
-                "9a2e93c252d98476"
+                "6359ac2f80e99e86"
             ]
         ]
+    },
+    {
+        "id": "13c4f45850600317",
+        "type": "change",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "req.commandID",
+                "pt": "msg",
+                "to": "payload.COMMANDID",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 1620,
+        "wires": [
+            [
+                "6359ac2f80e99e86"
+            ]
+        ]
+    },
+    {
+        "id": "955c00be512f9b91",
+        "type": "switch",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "Proper Response",
+        "property": "payload.COMMANDID",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 530,
+        "y": 1600,
+        "wires": [
+            [
+                "801b6d8f5042e205"
+            ],
+            [
+                "13c4f45850600317"
+            ]
+        ]
+    },
+    {
+        "id": "801b6d8f5042e205",
+        "type": "api-call-service",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "Failed",
+        "server": "da3b2d1e.ad751",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "mobile_app_chriscell",
+        "entityId": "",
+        "data": "{\"title\":\"Command Failed\",\"message\":\"Token or SessionID is probably invaild\",\"data\":{\"colour\":\"red\"}}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 690,
+        "y": 1560,
+        "wires": [
+            [
+                "821342b12862dcf4"
+            ]
+        ]
+    },
+    {
+        "id": "ceca70e87f5634d8",
+        "type": "api-call-service",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "Send Result",
+        "server": "da3b2d1e.ad751",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "mobile_app_chriscell",
+        "entityId": "",
+        "data": "\t{\t   \"title\": msg.payload.Entries.Entry.lookupcode,\t   \"message\": msg.payload.Entries.Entry.status,\t   \"data\": {        \"colour\": \"red\"    }\t}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 830,
+        "y": 1760,
+        "wires": [
+            [
+                "150b864f8bf34d1f"
+            ]
+        ]
+    },
+    {
+        "id": "d1e48ae2ecfa6160",
+        "type": "server-state-changed",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "HA Request Cancel",
+        "server": "da3b2d1e.ad751",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.mkx_cancelstart",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 90,
+        "y": 1620,
+        "wires": [
+            [
+                "76b8a9cc77eceef9"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "150b864f8bf34d1f",
+        "type": "api-call-service",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "toggle bool off",
+        "server": "da3b2d1e.ad751",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.mkx_cancelstart",
+        "data": "",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1000,
+        "y": 1760,
+        "wires": [
+            [
+                "5e9f77340aec0d07",
+                "821342b12862dcf4"
+            ]
+        ]
+    },
+    {
+        "id": "5e9f77340aec0d07",
+        "type": "link out",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "2deef0df32fb9597"
+        ],
+        "x": 1135,
+        "y": 1760,
+        "wires": []
+    },
+    {
+        "id": "0157b742149647f8",
+        "type": "link out",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "2deef0df32fb9597"
+        ],
+        "x": 2395,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "5cfe41b383d73764",
+        "type": "function",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "Get Weather Quadrant",
+        "func": "//lets setup in NodeRed\n\nvar urlLink = 'https://api.weather.gov/points/'+flow.get([\"latitude\"])+','+flow.get([\"longitude\"]);\n\nmsg.payload = \"Weather Please\";\nmsg.url = urlLink;\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Called at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 140,
+        "y": 1940,
+        "wires": [
+            [
+                "1aa11f7dcedd2aaa"
+            ]
+        ]
+    },
+    {
+        "id": "1aa11f7dcedd2aaa",
+        "type": "http request",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "Send Request",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": true,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 340,
+        "y": 1940,
+        "wires": [
+            [
+                "73c73d4cd18a941d"
+            ]
+        ]
+    },
+    {
+        "id": "f9f8cf8fd4a40256",
+        "type": "function",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "Pull weather and Check if at work",
+        "func": "/*\nI normally leave work at 11pm\nSo I am grabbing the temperature for that time\nand storing it into a file in case the server is down\n*/\nvar payload = msg.payload;\n//msg.temperature = 0;\nvar date = new Date().toISOString('en-US', {\n    year: 'numeric',\n    month: '2-digit',\n    day: 'numeric'\n}).split('T')[0]\ndate += \"T23:00\"; //look for 11pm\n\n\n//Verify Server Response\nif (msg.statusCode == 200)\n{\n    //Find Time Slot I need to use\n    for(var i = 0; i < 40; i++)\n    {\n        startTime = payload.properties.periods[i].startTime;\n        if(startTime.includes(date))\n        {\n            //msg.payload.properties.periods[3].temperature\n            msg.temperature = msg.payload.properties.periods[i].temperature;\n            msg.temptmrw = msg.payload.properties.periods[i+24].temperature;\n            flow.set([\"temperature\"], msg.temperature);\n            flow.set([\"temptmrw\"], msg.temptmrw);\n        }\n    }\n}\nelse\n{\n    if (flow.get([\"temptmrw\"]) == null)\n    {\n        //no temp known\n        flow.set([\"temperature\"], global.get('homeassistant.homeAssistant.states[\"weather.home_2\"].attributes.temperature'));\n        //We will ask our weather sensor\n        //May be useless though as it will report home weather\n        //not where the vehicle is located\n        \n    }\n    else\n    {\n        flow.set([\"temperature\"], flow.get([\"temptmrw\"]));\n        flow.set([\"temptmrw\"], null);\n    }\n}\n\n////////////////////////\n//////////////////////\n///Check Distance//////\n//////////////////////\nfunction distance(lat1, lon1, lat2, lon2, unit) {\n    var radlat1 = Math.PI * lat1/180\n    var radlat2 = Math.PI * lat2/180\n    var radlon1 = Math.PI * lon1/180\n    var radlon2 = Math.PI * lon2/180\n    var theta = lon1-lon2\n    var radtheta = Math.PI * theta/180\n    var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);\n    dist = Math.acos(dist)\n    dist = dist * 180/Math.PI\n    dist = dist * 60 * 1.1515\n    if (unit==\"K\") { dist = dist * 1.609344 }\n    if (unit==\"N\") { dist = dist * 0.8684 }\n    return dist\n}\n//37.47194360493601, -77.43292258576192 --PMUSA\n//flow val 37.4715, -77.436\n//var test = distance(37.47194360493601, -77.43292258576192, Math.floor(flow.get([\"latitude\"])), Math.floor(flow.get([\"longitude\"])));\nvar carLat =  parseFloat(flow.get([\"latitude\"]));\nvar carLon =  parseFloat(flow.get([\"longitude\"]));\nvar test = distance(37.47194360493601, -77.43292258576192,  carLat, carLon);\n//round to 3 decimal places\nif (test < 1.2)\n    flow.set([\"atWork\"], true);\nelse\n    flow.set([\"atWork\"], false);\n\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar statusText = `11pm temp is: ${msg.temperature} at ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 1940,
+        "wires": [
+            [
+                "870f94513d498f50"
+            ]
+        ]
+    },
+    {
+        "id": "73c73d4cd18a941d",
+        "type": "function",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "Get Weather Hourly",
+        "func": "//lets setup in NodeRed\n//payload.properties.forecastHourly\nvar urlLink = msg.payload.properties.forecastHourly;\n\nmsg.payload = \"Weather Please\";\nmsg.url = urlLink;\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Called at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 1940,
+        "wires": [
+            [
+                "4545b73052c008c8"
+            ]
+        ]
+    },
+    {
+        "id": "4545b73052c008c8",
+        "type": "http request",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "Get Weather",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": true,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 710,
+        "y": 1940,
+        "wires": [
+            [
+                "f9f8cf8fd4a40256",
+                "95a585157ad2fba4"
+            ]
+        ]
+    },
+    {
+        "id": "870f94513d498f50",
+        "type": "link out",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "2deef0df32fb9597"
+        ],
+        "x": 1115,
+        "y": 1940,
+        "wires": []
+    },
+    {
+        "id": "d6789e9b060c1e4c",
+        "type": "delay",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1120,
+        "y": 940,
+        "wires": [
+            [
+                "5a1a71c795481715"
+            ]
+        ]
+    },
+    {
+        "id": "2291bd599dc348fb",
+        "type": "delay",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1080,
+        "y": 500,
+        "wires": [
+            [
+                "b85178e04bb5d2f0"
+            ]
+        ]
+    },
+    {
+        "id": "42944826540f2520",
+        "type": "delay",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1220,
+        "y": 1300,
+        "wires": [
+            [
+                "d1c485b49530a593"
+            ]
+        ]
+    },
+    {
+        "id": "821342b12862dcf4",
+        "type": "delay",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1100,
+        "y": 1660,
+        "wires": [
+            [
+                "8fc484f34c81e683"
+            ]
+        ]
+    },
+    {
+        "id": "265d4ea6bc8337e3",
+        "type": "ha-entity",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "mkx.commandActive",
+        "server": "da3b2d1e.ad751",
+        "version": 1,
+        "debugenabled": false,
+        "outputs": 1,
+        "entityType": "sensor",
+        "config": [
+            {
+                "property": "name",
+                "value": "mkx.command_active"
+            },
+            {
+                "property": "device_class",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": ""
+            }
+        ],
+        "state": "payload.Entries.Entry.status",
+        "stateType": "msg",
+        "attributes": [],
+        "resend": true,
+        "outputLocation": "payload",
+        "outputLocationType": "none",
+        "inputOverride": "allow",
+        "outputOnStateChange": false,
+        "outputPayload": "$entity().state ? \"on\": \"off\"",
+        "outputPayloadType": "jsonata",
+        "x": 2040,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8abac21ac6d959c3",
+        "type": "link out",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "c7d58ef298602d20"
+        ],
+        "x": 475,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "c7d58ef298602d20",
+        "type": "link in",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "",
+        "links": [
+            "8abac21ac6d959c3",
+            "0a9e6764bb38271d",
+            "1c3b54a0ae119a88",
+            "9ca3edbbabf6d65c",
+            "1dbf75a75028fc36",
+            "0e0a2bb100123074",
+            "21479de4eb685aef",
+            "0a2b0f43908eeb71",
+            "48bfd39df6fd55e0",
+            "15426dde43feca80"
+        ],
+        "x": 1895,
+        "y": 500,
+        "wires": [
+            [
+                "265d4ea6bc8337e3"
+            ]
+        ]
+    },
+    {
+        "id": "0a9e6764bb38271d",
+        "type": "link out",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "c7d58ef298602d20"
+        ],
+        "x": 495,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "1c3b54a0ae119a88",
+        "type": "link out",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "c7d58ef298602d20"
+        ],
+        "x": 555,
+        "y": 1440,
+        "wires": []
+    },
+    {
+        "id": "1dbf75a75028fc36",
+        "type": "link out",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "c7d58ef298602d20"
+        ],
+        "x": 555,
+        "y": 1780,
+        "wires": []
+    },
+    {
+        "id": "b85178e04bb5d2f0",
+        "type": "change",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "Clear Command Active",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.Entries.Entry.status",
+                "pt": "msg",
+                "to": "null",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1260,
+        "y": 500,
+        "wires": [
+            [
+                "0e0a2bb100123074"
+            ]
+        ]
+    },
+    {
+        "id": "0e0a2bb100123074",
+        "type": "link out",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "c7d58ef298602d20"
+        ],
+        "x": 1395,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "5a1a71c795481715",
+        "type": "change",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "Clear Command Active",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.Entries.Entry.status",
+                "pt": "msg",
+                "to": "null",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1300,
+        "y": 940,
+        "wires": [
+            [
+                "21479de4eb685aef"
+            ]
+        ]
+    },
+    {
+        "id": "21479de4eb685aef",
+        "type": "link out",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "c7d58ef298602d20"
+        ],
+        "x": 1435,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "d1c485b49530a593",
+        "type": "change",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "Clear Command Active",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.Entries.Entry.status",
+                "pt": "msg",
+                "to": "null",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1400,
+        "y": 1300,
+        "wires": [
+            [
+                "0a2b0f43908eeb71"
+            ]
+        ]
+    },
+    {
+        "id": "0a2b0f43908eeb71",
+        "type": "link out",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "c7d58ef298602d20"
+        ],
+        "x": 1535,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "8fc484f34c81e683",
+        "type": "change",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "Clear Command Active",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.Entries.Entry.status",
+                "pt": "msg",
+                "to": "null",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1280,
+        "y": 1660,
+        "wires": [
+            [
+                "15426dde43feca80"
+            ]
+        ]
+    },
+    {
+        "id": "15426dde43feca80",
+        "type": "link out",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "c7d58ef298602d20"
+        ],
+        "x": 1415,
+        "y": 1660,
+        "wires": []
+    },
+    {
+        "id": "5b50f89c4d13ad07",
+        "type": "api-call-service",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "Request Remote Start",
+        "server": "da3b2d1e.ad751",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "entityId": "input_boolean.mkx_start",
+        "data": "",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 720,
+        "y": 2100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "95a585157ad2fba4",
+        "type": "debug",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 860,
+        "y": 2020,
+        "wires": []
     },
     {
         "id": "da3b2d1e.ad751",

@@ -1,11 +1,53 @@
 type: grid
 cards:
-  - type: entities
-    entities:
-      - entity: sensor.mkx_battery_status
-      - entity: sensor.mkx_tire_pressure
-      - entity: sensor.mkx_odometer
-    title: Lincoln MKX
+  - type: vertical-stack
+    cards:
+      - type: custom:banner-card
+        heading:
+          - 🚘
+          - MKX Status
+          - 🚘
+        row_size: 2
+        entities:
+          - entity: sensor.mkx_battery_status
+            name: Battery Status
+            icon: mdi:car-battery
+          - entity: sensor.mkx_battery_status
+            name: null
+          - entity: sensor.mkx_tire_pressure
+            icon: mdi:tire
+            name: Tire Pressure
+          - entity: sensor.mkx_tire_pressure
+            name: null
+          - entity: sensor.mkx_odometer
+            icon: mdi:counter
+            name: Odometer
+          - entity: sensor.mkx_odometer
+            name: null
+        card_mod: null
+        style: |
+          :host {
+            --banner-card-heading-size: 1.5em;
+            --banner-card-spacing: 0px;
+          }
+      - type: horizontal-stack
+        cards:
+          - type: gauge
+            entity: sensor.mkx_fuel_level
+            max: 100
+            severity:
+              green: 50
+              yellow: 20
+              red: 0
+            min: 0
+          - type: gauge
+            entity: sensor.mkx_oil_life
+            min: 0
+            max: 100
+            severity:
+              green: 50
+              yellow: 25
+              red: 10
   - type: horizontal-stack
     cards:
       - type: button
@@ -32,32 +74,47 @@ cards:
         name: Start MKX
         hold_action:
           action: toggle
-  - type: horizontal-stack
-    cards:
-      - type: gauge
-        entity: sensor.mkx_fuel_level
-        max: 100
-        severity:
-          green: 80
-          yellow: 40
-          red: 10
-        min: 0
-      - type: gauge
-        entity: sensor.mkx_oil_life
-        min: 0
-        max: 100
-        severity:
-          green: 80
-          yellow: 40
-          red: 0
-  - type: gauge
-    entity: sensor.mkx_remote_duration
-    min: 0
-    max: 600
-    name: Remote Start Time Left
-    severity:
-      green: 600
-      yellow: 300
-      red: 0
+  - type: conditional
+    conditions:
+      - entity: sensor.mkx_command_active
+        state_not: 'null'
+    card:
+      type: conditional
+      conditions:
+        - entity: sensor.mkx_command_active
+          state_not: 'null'
+      card:
+        type: entity
+        entity: sensor.mkx_command_active
+        name: Command Status
+        icon: mdi:list-status
+  - type: conditional
+    conditions:
+      - entity: sensor.mkx_remote_status
+        state: STATUS_TRUE
+    card:
+      type: horizontal-stack
+      cards:
+        - type: gauge
+          entity: sensor.mkx_remote_duration
+          min: 0
+          max: 600
+          name: Remote Start Time Left
+          severity:
+            green: 400
+            yellow: 180
+            red: 0
+        - type: button
+          state_color: true
+          tap_action:
+            action: more-info
+          entity: input_boolean.mkx_cancelstart
+          name: Cancel Start
+          hold_action:
+            action: toggle
+  - type: map
+    entities:
+      - entity: sensor.mkx_location
+    dark_mode: true
 columns: 1
 square: false
