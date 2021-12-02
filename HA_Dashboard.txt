@@ -24,6 +24,11 @@ cards:
             name: Odometer
           - entity: sensor.mkx_odometer
             name: null
+          - entity: device_tracker.mkx_location
+            icon: mdi:map
+            name: Location
+          - entity: device_tracker.mkx_location
+            name: null
         card_mod: null
         style: |
           :host {
@@ -114,7 +119,8 @@ cards:
             action: toggle
   - type: map
     entities:
-      - entity: sensor.mkx_location
+      - entity: device_tracker.mkx_location
     dark_mode: true
+    hours_to_show: 24
 columns: 1
 square: false

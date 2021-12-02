@@ -94,7 +94,7 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "",
-        "func": "//lets setup in NodeRed\n\nvar sessionID = \"--YOUR_SESSIONid--\";\nvar data = {\n    \"PARAMS\":{\n        \"apiLevel\":\"3\",\n        \"forceUpdate\":\"1\",\n        \"lastUpdatedTime\":\"0\",\n        \"sessionId\": sessionID\n        }\n    };\n//{\"PARAMS\":{\"apiLevel\":\"3\",\"forceUpdate\":\"0\",\"lastUpdatedTime\":\"0\",\"sessionId\":\"--YOUR_SESSIONid--\"}}\nvar jsonstr = JSON.stringify(data);\nvar url = \"https://phev.myfordmobile.com/services/webGetAVD\";\n\n\n\nmsg.payload = jsonstr;\nmsg.headers = {};\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\nmsg.url = url;\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Request Sent at at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "//lets setup in NodeRed\n\nvar sessionID = \"_YOUR_SESSION_ID_\";\nvar data = {\n    \"PARAMS\":{\n        \"apiLevel\":\"3\",\n        \"forceUpdate\":\"1\",\n        \"lastUpdatedTime\":\"0\",\n        \"sessionId\": sessionID\n        }\n    };\n//{\"PARAMS\":{\"apiLevel\":\"3\",\"forceUpdate\":\"0\",\"lastUpdatedTime\":\"0\",\"sessionId\":\"_YOUR_SESSION_ID_\"}}\nvar jsonstr = JSON.stringify(data);\nvar url = \"https://phev.myfordmobile.com/services/webGetAVD\";\n\n\n\nmsg.payload = jsonstr;\nmsg.headers = {};\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\nmsg.url = url;\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Request Sent at at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -168,7 +168,7 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "Door Lock",
-        "func": "//lets setup in NodeRed\nvar vin = \"--YOUR_VIN_HERE--\";\nvar sessionID = \"--YOUR_SESSIONid--\";\nvar data = {\n    \"PARAMS\":{\n        \"apiLevel\":\"3\",\n        \"LOOKUPCODE\":\"LOCK_CMD\",\n        \"VIN\": vin,\n        \"SESSIONID\": sessionID\n        },\n    \"Entries\":{\n        \"Entry\":{\n            \"status\":\"Failed\"\n            }\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\n\nmsg.payload = jsonstr;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Lock Command Called at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "//lets setup in NodeRed\nvar vin = \"_YOUR_VIN_\";\nvar sessionID = \"_YOUR_SESSION_ID_\";\nvar data = {\n    \"PARAMS\":{\n        \"apiLevel\":\"3\",\n        \"LOOKUPCODE\":\"LOCK_CMD\",\n        \"VIN\": vin,\n        \"SESSIONID\": sessionID\n        },\n    \"Entries\":{\n        \"Entry\":{\n            \"status\":\"Failed\"\n            }\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\n\nmsg.payload = jsonstr;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Lock Command Called at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -216,7 +216,7 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "Check Status",
-        "func": "//lets setup in NodeRed\nvar sessionID = \"--YOUR_SESSIONid--\";\nvar commandID = msg.req.commandID\nvar data = {\n    \"PARAMS\":{\n        \"COMMANDID\": commandID,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\nmsg.payload = data;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Status Requested at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "//lets setup in NodeRed\nvar sessionID = \"_YOUR_SESSION_ID_\";\nvar commandID = msg.req.commandID\nvar data = {\n    \"PARAMS\":{\n        \"COMMANDID\": commandID,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\nmsg.payload = data;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Status Requested at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -406,7 +406,7 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "Door unLock",
-        "func": "//lets setup in NodeRed\nvar vin = \"--YOUR_VIN_HERE--\";\nvar sessionID = \"--YOUR_SESSIONid--\";\n\nvar data = {\n    \"PARAMS\":{\n        \"apiLevel\":\"3\",\n        \"LOOKUPCODE\":\"UNLOCK_CMD\",\n        \"VIN\": vin,\n        \"SESSIONID\": sessionID\n        },\n    \"Entries\":{\n        \"Entry\":{\n            \"status\":\"Failed\"\n            }\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\n\nmsg.payload = jsonstr;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `unLock Command Called at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "//lets setup in NodeRed\nvar vin = \"_YOUR_VIN_\";\nvar sessionID = \"_YOUR_SESSION_ID_\";\n\nvar data = {\n    \"PARAMS\":{\n        \"apiLevel\":\"3\",\n        \"LOOKUPCODE\":\"UNLOCK_CMD\",\n        \"VIN\": vin,\n        \"SESSIONID\": sessionID\n        },\n    \"Entries\":{\n        \"Entry\":{\n            \"status\":\"Failed\"\n            }\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\n\nmsg.payload = jsonstr;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `unLock Command Called at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -454,7 +454,7 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "Check Status",
-        "func": "//lets setup in NodeRed\nvar sessionID = \"--YOUR_SESSIONid--\";\nvar commandID = msg.req.commandID\nvar data = {\n    \"PARAMS\":{\n        \"COMMANDID\": commandID,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\nmsg.payload = data;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Status Requested at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "//lets setup in NodeRed\nvar sessionID = \"_YOUR_SESSION_ID_\";\nvar commandID = msg.req.commandID\nvar data = {\n    \"PARAMS\":{\n        \"COMMANDID\": commandID,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\nmsg.payload = data;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Status Requested at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -662,7 +662,7 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "Remote Start",
-        "func": "//lets setup in NodeRed\nvar vin = \"--YOUR_VIN_HERE--\";\nvar sessionID = \"--YOUR_SESSIONid--\";\n\nvar data = {\n    \"PARAMS\":{\n        \"apiLevel\":\"3\",\n        \"LOOKUPCODE\":\"START_CMD\",\n        \"VIN\": vin,\n        \"SESSIONID\": sessionID\n        },\n    \"Entries\":{\n        \"Entry\":{\n            \"status\":\"Failed\"\n            }\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\n\nmsg.payload = jsonstr;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Start Command Called at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "//lets setup in NodeRed\nvar vin = \"_YOUR_VIN_\";\nvar sessionID = \"_YOUR_SESSION_ID_\";\n\nvar data = {\n    \"PARAMS\":{\n        \"apiLevel\":\"3\",\n        \"LOOKUPCODE\":\"START_CMD\",\n        \"VIN\": vin,\n        \"SESSIONID\": sessionID\n        },\n    \"Entries\":{\n        \"Entry\":{\n            \"status\":\"Failed\"\n            }\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\n\nmsg.payload = jsonstr;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Start Command Called at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -702,7 +702,7 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "Check Status",
-        "func": "//lets setup in NodeRed\nvar sessionID = \"--YOUR_SESSIONid--\";\nvar commandID = msg.req.commandID\nvar data = {\n    \"PARAMS\":{\n        \"COMMANDID\": commandID,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\nmsg.payload = data;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Status Requested at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "//lets setup in NodeRed\nvar sessionID = \"_YOUR_SESSION_ID_\";\nvar commandID = msg.req.commandID\nvar data = {\n    \"PARAMS\":{\n        \"COMMANDID\": commandID,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\nmsg.payload = data;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Status Requested at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1075,7 +1075,7 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "Refresh Token",
-        "func": "//lets setup in NodeRed\n\nvar sessionID = \"--YOUR_SESSIONid--\";\nvar data = {\n    \"refresh_token\":\"--YOUR_REFRESH_TOKEN--\"\n    };\nvar jsonstr = JSON.stringify(data);\n\nvar url = \"https://api.mps.ford.com/api/oauth2/v1/refresh\";\n\n\n\nmsg.payload = data;\nmsg.headers = {};\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\n//msg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\nmsg.headers['application-id'] = '45133B88-0671-4AAF-B8D1-99E684ED4E45';\nmsg.url = url;\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Requested Token Refresh at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "//lets setup in NodeRed\n\nvar sessionID = \"_YOUR_SESSION_ID_\";\nvar data = {\n    \"refresh_token\":\"_YOUR_REFRESH_TOKEN_\"\n    };\nvar jsonstr = JSON.stringify(data);\n\nvar url = \"https://api.mps.ford.com/api/oauth2/v1/refresh\";\n\n\n\nmsg.payload = data;\nmsg.headers = {};\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\n//msg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\nmsg.headers['application-id'] = '45133B88-0671-4AAF-B8D1-99E684ED4E45';\nmsg.url = url;\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Requested Token Refresh at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1184,7 +1184,7 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "Update Flow Variables",
-        "func": "flow.set([\"latitude\"], parseFloat(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.vehicleLatitude));\nflow.set([\"longitude\"], parseFloat(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.vehicleLongitude));\nvar startStatus = msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.remoteStartStatus;\nstartStatus = startStatus.slice(2);\nflow.set([\"remoteStartStatus\"], startStatus);\nflow.set([\"remoteStartDuration\"], parseInt(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.remoteStartDuration));\nvar battery = msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.batteryHealth;\nbattery = battery.slice(2);\nflow.set([\"battery\"], battery);\nvar numb = parseInt(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.odometer)*0.621371;\nflow.set([\"odometer\"], parseInt(numb));\nflow.set([\"fuelLevel\"], parseInt(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.fuelLevel));\nvar tire = msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.tirePressure;\ntire = tire.slice(2);\nflow.set([\"tirePressure\"], tire);\n\n//Sometimes Lincoln reports oil life at 0 when it isnt\n//Check previous result and keep old result if current =0\nvar oilLife = parseInt(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.oilLife);\nvar prevOilLife = flow.get([\"oilLife\"]);\nif ((oilLife == 0) && (prevOilLife >4)){}\nelse\n    flow.set([\"oilLife\"], oilLife);\n\n\n\n////////////////////////\n//////////////////////\n///Check Distance//////\n//////////////////////\nfunction distance(lat1, lon1, lat2, lon2, unit) {\n    var radlat1 = Math.PI * lat1/180\n    var radlat2 = Math.PI * lat2/180\n    var radlon1 = Math.PI * lon1/180\n    var radlon2 = Math.PI * lon2/180\n    var theta = lon1-lon2\n    var radtheta = Math.PI * theta/180\n    var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);\n    dist = Math.acos(dist)\n    dist = dist * 180/Math.PI\n    dist = dist * 60 * 1.1515\n    if (unit==\"K\") { dist = dist * 1.609344 }\n    if (unit==\"N\") { dist = dist * 0.8684 }\n    return dist\n}\n//37.47194360493601, -77.43292258576192 --PMUSA\n//flow val 37.4715, -77.436\n//var test = distance(37.47194360493601, -77.43292258576192, Math.floor(flow.get([\"latitude\"])), Math.floor(flow.get([\"longitude\"])));\nvar carLat =  parseFloat(flow.get([\"latitude\"]));\nvar carLon =  parseFloat(flow.get([\"longitude\"]));\nvar test = distance(37.47194360493601, -77.43292258576192,  carLat, carLon);\n//round to 3 decimal places\nif (test < 1.2)\n    flow.set([\"atWork\"], true);\nelse\n    flow.set([\"atWork\"], false);\n\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Current Fuel Level ${flow.get([\"fuelLevel\"])} at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "flow.set([\"latitude\"], parseFloat(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.vehicleLatitude));\nflow.set([\"longitude\"], parseFloat(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.vehicleLongitude));\nvar startStatus = msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.remoteStartStatus;\nstartStatus = startStatus.slice(2);\nflow.set([\"remoteStartStatus\"], startStatus);\nflow.set([\"remoteStartDuration\"], parseInt(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.remoteStartDuration));\nvar battery = msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.batteryHealth;\nbattery = battery.slice(2);\nflow.set([\"battery\"], battery);\nvar numb = parseInt(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.odometer)*0.621371;\nflow.set([\"odometer\"], parseInt(numb));\nflow.set([\"fuelLevel\"], parseInt(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.fuelLevel));\nvar tire = msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.tirePressure;\ntire = tire.slice(2);\nflow.set([\"tirePressure\"], tire);\n\n//Sometimes Lincoln reports oil life at 0 when it isnt\n//Check previous result and keep old result if current =0\nvar oilLife = parseInt(msg.payload.avdQueryResponse.customerData.vehicleData.vehicle.oilLife);\nvar prevOilLife = flow.get([\"oilLife\"]);\nif ((oilLife == 0) && (prevOilLife >4)){}\nelse\n    flow.set([\"oilLife\"], oilLife);\n\n\n\n////////////////////////\n//////////////////////\n///Check Distance//////\n//////////////////////\n\nflow.set([\"location\"], global.get(\"homeassistant.homeAssistant.states['device_tracker.mkx_location'].state\"));\n\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Current Fuel Level ${flow.get([\"fuelLevel\"])} at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1595,11 +1595,13 @@
         "type": "switch",
         "z": "0dc4f3cdcca4aa50",
         "name": "At Work?",
-        "property": "atWork",
+        "property": "location",
         "propertyType": "flow",
         "rules": [
             {
-                "t": "true"
+                "t": "eq",
+                "v": "PMUSA",
+                "vt": "str"
             }
         ],
         "checkall": "false",
@@ -1897,76 +1899,6 @@
         ]
     },
     {
-        "id": "c1b1e76b2452fc6e",
-        "type": "ha-entity",
-        "z": "0dc4f3cdcca4aa50",
-        "name": "mkx.location",
-        "server": "da3b2d1e.ad751",
-        "version": 1,
-        "debugenabled": false,
-        "outputs": 1,
-        "entityType": "sensor",
-        "config": [
-            {
-                "property": "name",
-                "value": "MKX"
-            },
-            {
-                "property": "device_class",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            },
-            {
-                "property": "unit_of_measurement",
-                "value": ""
-            }
-        ],
-        "state": "atWork",
-        "stateType": "flow",
-        "attributes": [
-            {
-                "property": "entity_id",
-                "value": "sensor.mkx.location",
-                "valueType": "str"
-            },
-            {
-                "property": "source_type",
-                "value": "gps",
-                "valueType": "str"
-            },
-            {
-                "property": "latitude",
-                "value": "latitude",
-                "valueType": "flow"
-            },
-            {
-                "property": "longitude",
-                "value": "longitude",
-                "valueType": "flow"
-            },
-            {
-                "property": "gps_accuracy",
-                "value": "20",
-                "valueType": "num"
-            }
-        ],
-        "resend": true,
-        "outputLocation": "payload",
-        "outputLocationType": "none",
-        "inputOverride": "allow",
-        "outputOnStateChange": false,
-        "outputPayload": "$entity().state ? \"on\": \"off\"",
-        "outputPayloadType": "jsonata",
-        "x": 2010,
-        "y": 360,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "017b5bdf64a32288",
         "type": "link in",
         "z": "0dc4f3cdcca4aa50",
@@ -1983,8 +1915,8 @@
                 "789d3e6209089de5",
                 "8514e31af9086d3f",
                 "d2464ea3535804e9",
-                "c1b1e76b2452fc6e",
-                "2a6f36dd3a1e99c0"
+                "2a6f36dd3a1e99c0",
+                "89ae4988291a561a"
             ]
         ]
     },
@@ -2530,7 +2462,7 @@
         "entityidfiltertype": "exact",
         "outputinitially": false,
         "state_type": "str",
-        "haltifstate": "W_STATUS_TRUE",
+        "haltifstate": "STATUS_TRUE",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "outputs": 2,
@@ -2551,7 +2483,7 @@
                 "valueType": "num"
             }
         ],
-        "x": 1760,
+        "x": 1730,
         "y": 600,
         "wires": [
             [
@@ -2571,8 +2503,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2350,
-        "y": 700,
+        "x": 2260,
+        "y": 740,
         "wires": [
             [
                 "9a2e93c252d98476"
@@ -2673,7 +2605,7 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "Cancel Remote Start",
-        "func": "//lets setup in NodeRed\nvar vin = \"--YOUR_VIN_HERE--\";\nvar sessionID = \"--YOUR_SESSIONid--\";\n\nvar data = {\n    \"PARAMS\":{\n        \"apiLevel\":\"3\",\n        \"LOOKUPCODE\":\"CANCEL_START_CMD\",\n        \"VIN\": vin,\n        \"SESSIONID\": sessionID\n        },\n    \"Entries\":{\n        \"Entry\":{\n            \"status\":\"Failed\"\n            }\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\n\nmsg.payload = jsonstr;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Start Command Called at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "//lets setup in NodeRed\nvar vin = \"_YOUR_VIN_\";\nvar sessionID = \"_YOUR_SESSION_ID_\";\n\nvar data = {\n    \"PARAMS\":{\n        \"apiLevel\":\"3\",\n        \"LOOKUPCODE\":\"CANCEL_START_CMD\",\n        \"VIN\": vin,\n        \"SESSIONID\": sessionID\n        },\n    \"Entries\":{\n        \"Entry\":{\n            \"status\":\"Failed\"\n            }\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\n\nmsg.payload = jsonstr;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Start Command Called at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2713,7 +2645,7 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "Check Status",
-        "func": "//lets setup in NodeRed\nvar sessionID = \"--YOUR_SESSIONid--\";\nvar commandID = msg.req.commandID\nvar data = {\n    \"PARAMS\":{\n        \"COMMANDID\": commandID,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\nmsg.payload = data;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Status Requested at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "//lets setup in NodeRed\nvar sessionID = \"_YOUR_SESSION_ID_\";\nvar commandID = msg.req.commandID\nvar data = {\n    \"PARAMS\":{\n        \"COMMANDID\": commandID,\n        \"SESSIONID\": sessionID\n        }\n    };\nvar jsonstr = JSON.stringify(data);\n\nmsg.payload = data;\nmsg.headers = {};\nmsg.headers['Accept'] = '*/*';\nmsg.headers['content-type'] = 'application/json; charset=UTF-8';\nmsg.headers['Host'] = 'phev.myfordmobile.com';\nmsg.headers['Connection'] = 'Keep-Alive';\nmsg.headers['User-Agent'] = 'okhttp/4.9.0';\nmsg.headers['Accept-Encoding'] = 'gzip, deflate, br';\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\n\nvar statusText = `Status Requested at: ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3108,7 +3040,7 @@
         "type": "function",
         "z": "0dc4f3cdcca4aa50",
         "name": "Pull weather and Check if at work",
-        "func": "/*\nI normally leave work at 11pm\nSo I am grabbing the temperature for that time\nand storing it into a file in case the server is down\n*/\nvar payload = msg.payload;\n//msg.temperature = 0;\nvar date = new Date().toISOString('en-US', {\n    year: 'numeric',\n    month: '2-digit',\n    day: 'numeric'\n}).split('T')[0]\ndate += \"T23:00\"; //look for 11pm\n\n\n//Verify Server Response\nif (msg.statusCode == 200)\n{\n    //Find Time Slot I need to use\n    for(var i = 0; i < 40; i++)\n    {\n        startTime = payload.properties.periods[i].startTime;\n        if(startTime.includes(date))\n        {\n            //msg.payload.properties.periods[3].temperature\n            msg.temperature = msg.payload.properties.periods[i].temperature;\n            msg.temptmrw = msg.payload.properties.periods[i+24].temperature;\n            flow.set([\"temperature\"], msg.temperature);\n            flow.set([\"temptmrw\"], msg.temptmrw);\n        }\n    }\n}\nelse\n{\n    if (flow.get([\"temptmrw\"]) == null)\n    {\n        //no temp known\n        flow.set([\"temperature\"], global.get('homeassistant.homeAssistant.states[\"weather.home_2\"].attributes.temperature'));\n        //We will ask our weather sensor\n        //May be useless though as it will report home weather\n        //not where the vehicle is located\n        \n    }\n    else\n    {\n        flow.set([\"temperature\"], flow.get([\"temptmrw\"]));\n        flow.set([\"temptmrw\"], null);\n    }\n}\n\n////////////////////////\n//////////////////////\n///Check Distance//////\n//////////////////////\nfunction distance(lat1, lon1, lat2, lon2, unit) {\n    var radlat1 = Math.PI * lat1/180\n    var radlat2 = Math.PI * lat2/180\n    var radlon1 = Math.PI * lon1/180\n    var radlon2 = Math.PI * lon2/180\n    var theta = lon1-lon2\n    var radtheta = Math.PI * theta/180\n    var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);\n    dist = Math.acos(dist)\n    dist = dist * 180/Math.PI\n    dist = dist * 60 * 1.1515\n    if (unit==\"K\") { dist = dist * 1.609344 }\n    if (unit==\"N\") { dist = dist * 0.8684 }\n    return dist\n}\n//37.47194360493601, -77.43292258576192 --PMUSA\n//flow val 37.4715, -77.436\n//var test = distance(37.47194360493601, -77.43292258576192, Math.floor(flow.get([\"latitude\"])), Math.floor(flow.get([\"longitude\"])));\nvar carLat =  parseFloat(flow.get([\"latitude\"]));\nvar carLon =  parseFloat(flow.get([\"longitude\"]));\nvar test = distance(37.47194360493601, -77.43292258576192,  carLat, carLon);\n//round to 3 decimal places\nif (test < 1.2)\n    flow.set([\"atWork\"], true);\nelse\n    flow.set([\"atWork\"], false);\n\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar statusText = `11pm temp is: ${msg.temperature} at ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "func": "/*\nI normally leave work at 11pm\nSo I am grabbing the temperature for that time\nand storing it into a file in case the server is down\n*/\nvar payload = msg.payload;\n//msg.temperature = 0;\nvar date = new Date().toISOString('en-US', {\n    year: 'numeric',\n    month: '2-digit',\n    day: 'numeric'\n}).split('T')[0]\ndate += \"T23:00\"; //look for 11pm\n\n\n//Verify Server Response\nif (msg.statusCode == 200)\n{\n    //Find Time Slot I need to use\n    for(var i = 0; i < 40; i++)\n    {\n        startTime = payload.properties.periods[i].startTime;\n        if(startTime.includes(date))\n        {\n            //msg.payload.properties.periods[3].temperature\n            msg.temperature = msg.payload.properties.periods[i].temperature;\n            msg.temptmrw = msg.payload.properties.periods[i+24].temperature;\n            flow.set([\"temperature\"], msg.temperature);\n            flow.set([\"temptmrw\"], msg.temptmrw);\n        }\n    }\n}\nelse\n{\n    if (flow.get([\"temptmrw\"]) == null)\n    {\n        //no temp known\n        flow.set([\"temperature\"], global.get('homeassistant.homeAssistant.states[\"weather.home_2\"].attributes.temperature'));\n        //We will ask our weather sensor\n        //May be useless though as it will report home weather\n        //not where the vehicle is located\n        \n    }\n    else\n    {\n        flow.set([\"temperature\"], flow.get([\"temptmrw\"]));\n        flow.set([\"temptmrw\"], null);\n    }\n}\n\n////////////////////////\n//////////////////////\n///Check Location//////\n//////////////////////\nflow.set([\"location\"], global.get(\"homeassistant.homeAssistant.states['device_tracker.mkx_location'].state\"));\n\n\n////////////////////////////////////////////////////\n////Display information under node for reference////\n////////////////////////////////////////////////////\nvar statusText = `MKX is: ${flow.get(\"location\")} at ${date}`\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3159,8 +3091,7 @@
         "y": 1940,
         "wires": [
             [
-                "f9f8cf8fd4a40256",
-                "95a585157ad2fba4"
+                "f9f8cf8fd4a40256"
             ]
         ]
     },
@@ -3575,28 +3506,53 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 720,
+        "x": 740,
         "y": 2100,
         "wires": [
             []
         ]
     },
     {
-        "id": "95a585157ad2fba4",
-        "type": "debug",
+        "id": "dbf77f04eb4d9568",
+        "type": "api-call-service",
         "z": "0dc4f3cdcca4aa50",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 860,
-        "y": 2020,
-        "wires": []
+        "name": "set location",
+        "server": "da3b2d1e.ad751",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "",
+        "service": "",
+        "entityId": "",
+        "data": "",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 2230,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "89ae4988291a561a",
+        "type": "function",
+        "z": "0dc4f3cdcca4aa50",
+        "name": "Set Location",
+        "func": "var d=new Date();\nvar date = new Date().toLocaleDateString('en-US', {\n    month: 'short',\n    day: 'numeric',\n    hour12: false,\n    hour: 'numeric',\n    minute: 'numeric'\n})\nvar lat = flow.get('latitude');\nvar lon = flow.get('longitude');\nmsg.payload = {\n    domain: 'device_tracker',\n    service: 'see',\n    data: {\n   \"dev_id\": \"mkx_location\",\n   \"gps_accuracy\": 20,\n   \"gps\": [\n       lat,\n       lon\n    ]\n    }\n}\nvar statusText = `Ran at: ${date}`;\nnode.status({fill: \"green\", shape: \"dot\", text: statusText});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2030,
+        "y": 360,
+        "wires": [
+            [
+                "dbf77f04eb4d9568"
+            ]
+        ]
     },
     {
         "id": "da3b2d1e.ad751",
